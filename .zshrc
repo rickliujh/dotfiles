@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 export PATH=$PATH:/usr/local/go/bin:/home/ricky/go/bin
 export PATH=$PATH:/home/ricky/.local/bin
+export PATH=$PATH:/opt/nvim-linux64/bin
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
