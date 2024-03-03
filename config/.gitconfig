@@ -1,0 +1,83 @@
+[alias]
+	a = add
+	# Ignores whitespace changes, code movement, and renames
+	bl = blame -w -C -C -C --color-lines --color-by-age
+	c = commit -m
+	co = checkout
+	d = diff --word-diff -M -C
+	l = pull
+	m = merge
+	p = push
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	tag = tag -s
+	# Takes regex as argument and searches for it in the entire git history
+	pi = log -p -S
+	re = rebase
+        rei = rebase -i
+        st = status
+        ss = status -s
+	sw = switch
+	alias = config --get-regexp alias
+	staash = stash -all
+	tag = tag -s
+	# List contributors with number of commits.
+	contributors = shortlog --summary --numbered
+	# Interactive rebase with the given number of latest commits.
+	reb = "!r() { git rebase -i HEAD~$1; }; r"
+	# Find commits by source code
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+	# Find commits by commit message
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+	# Remove branches that have already been merged with current branch
+	bye = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	# Nuke the working tree: discard all changes in the working tree
+	nuke = checkout -- .
+	bb = !better-git-branch.sh
+
+[branch]
+	sort = -committerdate
+
+[color]
+	ui = true
+
+[commit]
+	gpgSign = true
+
+[core]
+	editor = nvim
+	pager = delta
+	ignorecase = false
+
+[credential]
+	helper = cache --timeout 3600
+
+[diff]
+	colorMoved = default
+
+[delta]
+	navigate = true    # use n and N to move between diff sections
+	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	features = Coldark-Dark
+
+[fetch]
+	prune = true
+	output = compact
+
+[interactive]
+	diffFilter = delta --color-only --highlight-removed
+
+[merge]
+	conflictstyle = diff3
+	log = true
+
+[push]
+	autoSetupRemote = true
+
+[rerere]
+	enabled = true
+
+[column]
+	ui = auto
+
+[gpg]
+	format = ssh
