@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ricky/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,11 +71,17 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-        git
-        zsh-autosuggestions
-        zsh-syntax-highlighting
+        # internal
         z
-	history
+        history
+        git
+        # external
+        fzf-tab
+        zsh-autosuggestions
+        fast-syntax-highlighting 
+        alias-tips
+        git-extra-commands
+        zsh-autopair
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -87,8 +93,7 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-export PATH=$PATH:/usr/local/go/bin:/home/ricky/go/bin
-export PATH=$PATH:/home/ricky/.local/bin
+export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/opt/nvim-linux64/bin
 
 # Preferred editor for local and remote sessions
@@ -115,3 +120,6 @@ alias ll='ls -alF'
 # Key Binding
 bindkey '^y' autosuggest-accept
 bindkey '^.' autosuggest-fetch
+
+# Local configurations
+[ -f ~/.local.sh ] && source ~/.local.sh
