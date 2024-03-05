@@ -17,29 +17,30 @@ install_essentials() {
     # fd-find https://github.com/sharkdp/fd
     # lazygit https://github.com/jesseduffield/lazygit
 
-    log_blue "Checking updates..."
+    log_task "Checking updates..."
     sudo apt update
 
-    log_blue "Installing..."
-    sudo apt install btop zsh ripgrep fd-find curl wget git tmux bat fzf unzip
+    log_task "Installing..."
+    sudo apt install -y btop zsh ripgrep fd-find curl wget git tmux bat fzf unzip vim
 
     sudo ln -sfnv /usr/bin/fdfind /usr/bin/fd
     sudo ln -sfnv /usr/bin/batcat /usr/bin/bat
 }
 
 install_nvim() {
-    log_blue "Installing neovim..."
+    log_task "Installing neovim..."
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
     sudo rm -rf /opt/nvim
     sudo tar -C /opt -xzf nvim-linux64.tar.gz
     rm -rf nvim-linux64.tar.gz
+    echo export PATH='$PATH':/opt/nvim-linux64/bin >> "$HOME/.local.sh"
 }
 
 install_oh_my_zsh() {
-    log_blue "Installing oh-my-zsh..."
+    log_task "Installing oh-my-zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-    log_blue "Installing zsh plugins..."
+    log_task "Installing zsh plugins..."
     gh="https://github.com/"
     omz="$HOME/.oh-my-zsh/custom"
     omz_plugin="$omz/plugins/"
@@ -49,21 +50,15 @@ install_oh_my_zsh() {
     git clone "$gh/Aloxaf/fzf-tab" "$omz_plugin/fzf-tab"
     git clone "$gh/zsh-users/zsh-autosuggestions" "$omz_plugin/zsh-autosuggestions"
     git clone "$gh/zdharma-continuum/fast-syntax-highlighting" "$omz_plugin/fast-syntax-highlighting"
-    # git clone "$gh/djui/alias-tips" "$omz_plugin/alias-tips"
+    git clone "$gh/djui/alias-tips" "$omz_plugin/alias-tips"
     git clone "$gh/unixorn/git-extra-commands" "$omz_plugin/git-extra-commands" # https://github.com/unixorn/git-extra-commands
     git clone "$gh/hlissner/zsh-autopair" "$omz_plugin/zsh-autopair"
 
     chsh -s "$(which zsh)"
 }
 
-setup_ssh() {
-    log_blue "Setup SSH key for you..."
-  # TODO: ssh setup
-  # TODO: git-delta setup
-}
-
 install_git_delta() {
-    log_blue "Installing git-delta..."
+    log_task "Installing git-delta..."
     url="https://github.com/dandavison/delta/releases/download/0.16.5/git-delta-musl_0.16.5_amd64.deb"
     name="git-delta-for-setup"
 
@@ -73,12 +68,82 @@ install_git_delta() {
     rm -rf "./$name"
 }
 
-all() {
+install_go() {
+    log_task "Installing golang..."
+
+    url="https://go.dev/dl/go1.22.0.linux-amd64.tar.gz"
+    name="golang.tar.gz"
+
+    rm -rf "./$name"
+    curl -fSL "$url" -o "$name"
+    rm -rf /usr/local/go && tar -C /usr/local -xzf "$name"
+    rm -rf "./$name"
+
+    echo export PATH='$PATH':/usr/local/go/bin >> "$HOME/.local.sh"
+    export PATH=$PATH:/usr/local/go/bin
+
+    go version
+}
+
+install_rust() {
+    log_task "Installing rust lang..."
+
+    zsh="$HOME/.oh-my-zsh"
+
+    sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" "" -y
+    mkdir -p "$zsh/completions/"
+
+    source "$HOME/.cargo/env" 
+    rustup completions zsh rustup> "$zsh/completions/_rustup"
+    rustup completions zsh cargo > "$zsh/completions/_cargo"
+
+    echo source '$HOME'/.cargo/env >> "$HOME/.local.sh"
+}
+
+
+install_python3() {
+    sudo apt install -y python3
+}
+
+install_node() {
+    # https://github.com/nodesource/distribution
+    version="setup_lts.x"
+    rm -rf $version
+    curl -fsSL "https://deb.nodesource.com/$version" | sudo -E bash - && sudo apt install -y nodejs
+    rm -rf $version
+    sudo corepack enable
+}
+
+install_dev_pkgs() {
+    sudo apt install -y build-essential
+}
+
+install_extras() {
+    log_task "Installing extra package..."
+    check_lang_installed
+
+    cargo install eza
+    cargo install topgrade 
+    go install github.com/jesseduffield/lazygit@latest
+}
+
+install_without_languages() {
     install_essentials
     install_nvim
     install_oh_my_zsh
     install_git_delta
-    setup_ssh
 }
 
-"$@"
+install_languages() {
+    install_go
+    install_rust
+    install_python3
+    install_dev_pkgs
+}
+
+install_all() {
+    install_without_languages
+    install_languages
+    install_extras
+}
+

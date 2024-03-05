@@ -80,3 +80,7 @@ config_scripts() {
     echo ${scripts[@]}
  }
 
+check_lang_installed() {
+    go version && rust --version || error "Install essential languages first"
+}
+
