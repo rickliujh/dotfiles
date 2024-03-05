@@ -1,0 +1,308 @@
+{
+    "editor.fontLigatures": false,
+    "window.titleBarStyle": "custom",
+    "debug.console.lineHeight": 20,
+    "editor.fontFamily": "'MesloLGS Nerd Font', 'Droid Sans Fallback','Droid Sans Mono'",
+    "editor.lineHeight": 20,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.suggestSelection": "first",
+    "npm.packageManager": "yarn",
+    "terminal.integrated.fontFamily": "'MesloLGS Nerd Font', 'monospace', monospace, 'Droid Sans Fallback','Droid Sans Mono'",
+    "terminal.integrated.lineHeight": 1.1,
+    "remote.SSH.remotePlatform": {
+        "remote-dev-aws": "linux"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "editor.inlineSuggest.enabled": true,
+    "editor.accessibilitySupport": "off",
+    "vim.vimrc.path": "c:\\Users\\$NAME\\OneDrive\\.config_linux_related\\.vimrc",
+    "vim.vimrc.enable": true,
+    "debug.toolBarLocation": "docked",
+    "editor.lineNumbers": "relative",
+    "workbench.activityBar.location": "top",
+    "workbench.editor.showTabs": "none",
+    "editor.hover.hidingDelay": 0,
+    "editor.hover.delay": 0,
+    "editor.experimentalWhitespaceRendering": "font",
+    "editor.fontVariations": false,
+    "editor.occurrencesHighlight": "off",
+    "editor.selectionHighlight": false,
+    "editor.matchBrackets": "never",
+    "workbench.colorTheme": "One Monokai Dark",
+    "editor.cursorSurroundingLines": 10,
+    "editor.scrollbar.verticalScrollbarSize": 12,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#5f00af",
+        "statusBar.noFolderBackground": "#5f00af",
+        "statusBar.debuggingBackground": "#5f00af",
+        "statusBar.foreground": "#ffffff",
+        "statusBar.debuggingForeground": "#ffffff",
+        "editorIndentGuide.background1": "#1f232b"
+    },
+    "editor.rulers": [
+        85,
+        120
+    ],
+    "vim.commandLineModeKeyBindings": [],
+    "vim.commandLineModeKeyBindingsNonRecursive": [],
+    "editor.scrollbar.vertical": "hidden",
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.overviewRulerBorder": false,
+    "editor.fontWeight": "normal",
+    "editor.minimap.enabled": false,
+    "editor.renderLineHighlight": "none",
+    "editor.cursorSurroundingLinesStyle": "all",
+    "editor.indentSize": "tabSize",
+    "editor.cursorWidth": 1,
+    "vim.leader": " ",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "ctrl",
+                "w"
+            ],
+            "command": [
+                "deleteWordLeft"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "ctrl",
+                "w",
+                "s"
+            ],
+            "command": [
+                "workbench.action.splitEditorRight"
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "w",
+                "v"
+            ],
+            "command": [
+                "workbench.action.splitEditorDown"
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "w",
+                "q"
+            ],
+            "command": [
+                "workbench.action.splitEditorDown"
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "w",
+                "j"
+            ],
+            "command": [
+                "views.moveViewDown"
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "w",
+                "k"
+            ],
+            "command": [
+                "views.moveViewUp"
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "w",
+                "h"
+            ],
+            "command": [
+                "views.moveViewLeft"
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "w",
+                "l"
+            ],
+            "command": [
+                "views.moveViewRight"
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "w",
+                "q"
+            ],
+            "command": [
+                "workbench.action.closeActiveEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+            ],
+            "commands": [
+                {
+                    "command": "editor.action.formatDocument",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "p",
+            ],
+            "commands": [
+                {
+                    "command": "selectPrevCodeAction",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "n",
+            ],
+            "commands": [
+                {
+                    "command": "selectNextCodeAction",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [
+                "K",
+            ],
+            "commands": [
+                "editor.action.showDefinitionPreviewHover",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.view.explorer"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "p",
+                "d"
+            ],
+            "commands": [
+                "editor.action.peekDefinition"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "i"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "p",
+                "i"
+            ],
+            "commands": [
+                "editor.action.peekImplementation"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "q"
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "t"
+            ],
+            "commands": [
+                "editor.action.goToTypeDefinition"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "p",
+                "t"
+            ],
+            "commands": [
+                "editor.action.peekTypeDefinition"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindings": [],
+    "vim.searchHighlightColor": "#e5c07b",
+    "vim.searchMatchColor": "#e5c07b",
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.color": "#a9dc7660",
+    "vim.highlightedyank.duration": 250,
+    "editor.autoClosingQuotes": "never",
+    "files.autoSave": "onFocusChange",
+    "window.zoomLevel": 1,
+    "editor.wordWrap": "on",
+    "editor.autoClosingBrackets": "never",
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.layoutControl.enabled": false,
+    "window.commandCenter": false,
+}
