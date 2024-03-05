@@ -7,12 +7,21 @@ source ./helper.sh
 
 setup_symlinks() {
     log_task "Setting up symlinks..."
-    for item in "$PWD/config"; do
-        if [ -d "$item" ]; then
-            ln -sfnv "$PWD/config/$item" "$HOME/.config/"
-        done
-        if [ -f "$item" ]; then
-            ln -sfnv "$PWD/config/$item" ~/
-        done
+
+    mkdir -p "$HOME/.config/" 
+    mkdir -p "$HOME/.local/bin" 
+    dirs=($(config_dirs))
+    files=($(config_files))
+    scripts=($(config_scripts))
+
+    for dir in "${dirs[@]}"; do
+        ln -sfnv "$PWD/config/$dir" "$HOME/.config/"
+    done
+    for file in "${files[@]}"; do
+        ln -sfnv "$PWD/config/$file" "$HOME/"
+    done
+    for script in "${scripts[@]}"; do
+        ln -sfnv "$PWD/scripts/$script" "$HOME/.local/bin"
     done
 }
+

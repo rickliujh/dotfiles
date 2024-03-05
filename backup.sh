@@ -5,26 +5,29 @@
 set -eu
 source ./helper.sh
 
-declare -a config_dirs=(
-    "autorandr" "bat" "broot" "bundle" "cmus" "delta" "fish" "fontconfig" "gitignore.global"
-    "htop" "kitty" "lazygit" "xplr" "libinput-gestures.conf" "ranger" "shell"
-    "sysinfo.conkyrc" "topgrade.toml" "bluetuith" "nvim"
-)
-
-declare -a home_files=(
-    ".bashrc" ".dircolors" ".dmenurc" ".gitconfig" ".inputrc" ".luarc.json" ".prettierrc"
-    ".pryrc" ".pystartup" ".stylua.toml" ".tmux.conf" ".vimrc" ".Xresources" ".zshrc"
-)
+BACKUP_DIR="$HOME/.local/state/dotfiles/backups"
+CURRENT_TIME=$(date "+%Y-%m-%d_%H-%M-%S")
 
 backup_configs() {
     log_task "Backing up existing files..."
+    NEW_BACKUP_DIR="$BACKUP_DIR/$CURRENT_TIME"
+    mkdir -p "$NEW_BACKUP_DIR" 
 
-    for dir in "${config_dirs[@]}"; do
-        mv -v "$HOME/.config/$dir" "$HOME/.config/$dir.old"
-    done
-    for file in "${home_files[@]}"; do
-        mv -v "$HOME/$file" "$HOME/$file.old"
+    dirs=($(config_dirs))
+    for dir in "${dirs[@]}"; do
+        if [ -d "$HOME/.config/$dir" ]; then
+            mkdir -p "$NEW_BACKUP_DIR/.config" 
+            mv -v "$HOME/.config/$dir" "$NEW_BACKUP_DIR/.config/$dir"
+        fi
     done
 
-    log_manual_action "Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old'."
+    files=($(config_files))
+    for file in "${files[@]}"; do
+        if [ -f "$HOME/$file" ]; then
+            mv -v "$HOME/$file" "$NEW_BACKUP_DIR/$file"
+        fi
+    done
+
+    log_manual_action "You can remove backups in $NEW_BACKUP_DIR"
 }
+
