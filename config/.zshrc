@@ -93,7 +93,6 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-export PATH=$PATH:$HOME/.local/bin
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -113,24 +112,18 @@ export PATH=$PATH:$HOME/.local/bin
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls='ls --color=auto'
-alias ll='ls -alF'
 
-# Docker alias
-alias dk='docker'
-alias dki='dk images -a'
-alias dkrm='dk rm'
-alias dkrmi='dk rmi'
-alias dkre='dk restart'
-alias dkpt='dk port'
-alias dkk='dk kill'
-alias dkr='dk run'
-alias dkb='dk build'
-alias dkps='dk ps -a'
-alias dkl='dk pull'
-alias dkp='dk push'
-alias dke='dk exec'
-alias dkrr='dk run -rm'
+# fzf keybindings
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Common environment variables
+[ -f ~/.config/shell/envars.sh ] && source ~/.config/shell/envars.sh
+
+# Common functions
+[ -f ~/.config/shell/functions.sh ] && source ~/.config/shell/functions.sh
+
+# Common aliases
+[ -f ~/.config/shell/aliases.sh ] && source ~/.config/shell/aliases.sh
 
 # Key Binding
 bindkey '^y' autosuggest-accept
