@@ -57,6 +57,11 @@ install_oh_my_zsh() {
     chsh -s "$(which zsh)"
 }
 
+install_tmux_plugin() {
+    # https://github.com/tmux-plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+}
+
 install_git_delta() {
     log_task "Installing git-delta..."
     url="https://github.com/dandavison/delta/releases/download/0.16.5/git-delta-musl_0.16.5_amd64.deb"
@@ -132,6 +137,7 @@ install_without_languages() {
     install_nvim
     install_oh_my_zsh
     install_git_delta
+    install_tmux_plugin
 }
 
 install_languages() {
