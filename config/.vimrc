@@ -12,7 +12,7 @@ set incsearch
 set number
 
 " Enable mouse mode
-set mouse=a
+" set mouse=a
 set cursorline
 set cursorlineopt=number
 set relativenumber
