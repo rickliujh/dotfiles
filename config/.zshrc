@@ -87,7 +87,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
+setopt ignore_eof
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
