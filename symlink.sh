@@ -22,7 +22,7 @@ setup_symlinks() {
     done
     for script in "${scripts[@]}"; do
         ln -sfnv "$PWD/scripts/$script" "$HOME/.local/bin"
-        chmod 755 "$PWD/scripts/$script"
+        chmod -x "$PWD/scripts/$script"
     done
 }
 
