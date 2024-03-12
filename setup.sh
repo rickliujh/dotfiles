@@ -54,6 +54,7 @@ main() {
     -i | --install | i | install) install_packages && install_languages ;;
     -l | --symlinks | l | symlinks) setup_symlinks ;;
     -b | --backup | b | backup) backup_configs ;;
+    -m | --menu | m | menu) show_menu ;;
     *) "$@";;
     esac
     exit 0
