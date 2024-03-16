@@ -81,6 +81,6 @@ config_scripts() {
  }
 
 check_lang_installed() {
-    go version && rust --version || error "Install essential languages first"
+    go version && rustc --version || error "Install essential languages first"
 }
 
