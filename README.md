@@ -20,8 +20,28 @@ Linux and desktop configuration and setup script.
 3. understanding zshrc with oh-my-zsh 
 4. ~~setting up tmux~~
 5. understanding eza and its config and how to integrating with zsh(require 3)
+6. ssh port forward script for remote development
 
 ## Inspired by
 - [2KAbhishek/dots2k: Passionately crafted for CLI lovers (github.com)](https://github.com/2KAbhishek/dots2k)
 - [felipecrs/dotfiles: Bootstrap your Ubuntu in a single command! (github.com)](https://github.com/felipecrs/dotfiles)
 
+## Remote Development
+Combining dotfiles and Dockerfiles in the `dockerfiles` directory enable you pioneering your project with excellent remote development environment
+
+### Usage
+```
+# First build your image with your identity
+docker build -f=nodedev.Dockerfile -t=nvimnode:v0.1 --build-arg=EMAIL={{YOUR_EMAIL}} --build-arg=NAME={{YOUR_NAME}} --build-arg=PASSWD={{YOUR_PASSWD}} .
+
+# Second start a container by mount your project into docker or you can use git to download later on
+docker run -v ~/workspace/{{YOUR-PROJECT}}:/root/{{YOUR-PROJECT}} -p 8654:22 --name {{IMAGE_NAME}} -d -it nvimnode:v0.1
+
+# use ssh to start a tmux session in the very first time
+ssh user@<hostname> -p 8654 -t "tmux new -s {{TMUX_SESSION}}" 
+
+# use ssh to attach a tmux session next time
+ssh user@<hostname> -p 8654 -t "tmux a -t {{TMUX_SESSION}}"
+
+# enjoy your journey
+```
