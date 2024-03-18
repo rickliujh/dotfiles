@@ -75,6 +75,10 @@ plugins=(
         z
         history
         git
+        azure
+        kubectl
+        terraform
+
         # external
         fzf-tab
         zsh-autosuggestions
