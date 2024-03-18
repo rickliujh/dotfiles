@@ -19,22 +19,6 @@
             }
         },
         {
-            "command": "paste"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
-        },
-        {
             "command": "unbound",
             "keys": "ctrl+v"
         },
@@ -51,12 +35,36 @@
             "keys": "ctrl+plus"
         },
         {
+            "command": "unbound",
+            "keys": "alt+enter"
+        },
+        {
+            "command": "paste"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        },
+        {
             "command": 
             {
                 "action": "adjustFontSize",
                 "delta": 1.0
             },
             "keys": "win+ctrl+plus"
+        },
+        {
+            "command": "toggleFullscreen",
+            "keys": "alt+shift+enter"
         }
     ],
     "copyFormatting": "none",
@@ -98,8 +106,11 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
+                "adjustIndistinguishableColors": "always",
+                "antialiasingMode": "cleartype",
                 "colorScheme": "One Half Dark",
                 "cursorShape": "filledBox",
+                "experimental.retroTerminalEffect": false,
                 "font": 
                 {
                     "cellHeight": "1.4",
@@ -107,6 +118,7 @@
                 },
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
+                "historySize": 9001,
                 "name": "Ubuntu",
                 "scrollbarState": "visible",
                 "source": "Windows.Terminal.Wsl"
