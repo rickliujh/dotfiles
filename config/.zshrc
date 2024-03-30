@@ -75,6 +75,7 @@ plugins=(
         z
         history
         git
+        docker
         azure
         kubectl
         terraform
