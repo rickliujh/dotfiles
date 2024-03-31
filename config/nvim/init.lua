@@ -128,7 +128,7 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
+        vim.keymap.set('n', '<leader>1p', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
@@ -250,10 +250,10 @@ require('lazy').setup({
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   }
@@ -497,7 +497,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- [[ Configure Harpoon]]
 -- Basic setup to helps to switch between buffers.
 vim.keymap.set('n', '<C-e>', require('harpoon.ui').toggle_quick_menu)
-vim.keymap.set('n', '<leader>af', require('harpoon.mark').add_file)
+vim.keymap.set('n', '<leader>ha', require('harpoon.mark').add_file, { desc = 'add file on harpoon' })
+vim.keymap.set('n', '<leader>hd', require('harpoon.mark').rm_file, { desc = 'delete file from harpoon' })
+vim.keymap.set('n', '<leader>hc', require('harpoon.mark').clear_all, { desc = 'claer all file on harpoon' })
 vim.keymap.set('n', '<M-9>', require('harpoon.ui').nav_next)
 vim.keymap.set('n', '<M-0>', require('harpoon.ui').nav_prev)
 vim.keymap.set('n', '<M-1>', function() require('harpoon.ui').nav_file(1) end)
@@ -556,7 +558,8 @@ require('which-key').register {
   ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
+  ['<leader>1'] = { name = 'More git', _ = 'which_key_ignore' },
+  ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
