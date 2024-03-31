@@ -30,10 +30,9 @@ install_essentials() {
 install_nvim() {
     log_task "Installing neovim..."
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-    sudo rm -rf /opt/nvim
+    sudo rm -rf /opt/nvim-linux64
     sudo tar -C /opt -xzf nvim-linux64.tar.gz
     rm -rf nvim-linux64.tar.gz
-    echo export PATH='$PATH':/opt/nvim-linux64/bin >> "$HOME/.local.sh"
 }
 
 install_oh_my_zsh() {
@@ -84,7 +83,6 @@ install_go() {
     rm -rf /usr/local/go && tar -C /usr/local -xzf "$name"
     rm -rf "./$name"
 
-    echo export PATH='$PATH':/usr/local/go/bin >> "$HOME/.local.sh"
     export PATH=$PATH:/usr/local/go/bin
 
     go version
