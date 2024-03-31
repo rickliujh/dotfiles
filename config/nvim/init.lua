@@ -352,6 +352,11 @@ vim.o.softtabstop = 4
 -- Number of spaces inserted when indenting
 vim.o.shiftwidth = 4
 
+-- enable spell check
+vim.o.spell = true
+vim.o.spelllang = "en_us"
+
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
