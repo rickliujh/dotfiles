@@ -5,6 +5,8 @@
 set -eu
 source ./helper.sh
 
+ZSH_COMPLETION_PATH = "/usr/share/zsh/vendor-completions"
+
 install_essentials() {
     # considering indtall
     # bat https://github.com/sharkdp/bat
@@ -97,8 +99,8 @@ install_rust() {
     mkdir -p "$zsh/completions/"
 
     source "$HOME/.cargo/env" 
-    rustup completions zsh rustup> "$zsh/completions/_rustup"
-    rustup completions zsh cargo > "$zsh/completions/_cargo"
+    rustup completions zsh rustup> "$ZSH_COMPLETION_PATH/_rustup"
+    rustup completions zsh cargo > "$ZSH_COMPLETION_PATH/_cargo"
 
     echo source '$HOME'/.cargo/env >> "$HOME/.local.sh"
 }
