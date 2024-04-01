@@ -95,10 +95,10 @@ require('lazy').setup({
         comment = { italic = true },
       },
       overrides = {
-        SpellBad = { default = true,  undercurl = true, },
-        SpellCap = { default = true,  undercurl = true, },
-        SpellLocal = { default = true,  undercurl = true, },
-        SpellRare = { default = true,  undercurl = true, },
+        SpellBad = { default = true, undercurl = true, },
+        SpellCap = { default = true, undercurl = true, },
+        SpellLocal = { default = true, undercurl = true, },
+        SpellRare = { default = true, undercurl = true, },
       },
     }
   },
@@ -316,7 +316,8 @@ vim.o.mouse = 'a'
 -- vim.o.clipboard = 'unnamedplus'
 
 -- Setup clipboard for WSL.
-if vim.fn.has('wsl') == 1 then
+-- will skip if using WSL with tmux (enable WSL clipboard while using tmux will cause malfunction.
+if vim.fn.has('wsl') == 1 and string.len(os.getenv('TMUX') or '') == 0 then
   vim.g.clipboard = {
     name = 'WslClipboard',
     copy = {
