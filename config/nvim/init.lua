@@ -66,6 +66,43 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
+  -- Colorscheme
+  {
+    -- Theme inspired by Atom
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    config = function(_, opts)
+      require('onedark').setup(opts)
+      vim.cmd.colorscheme 'onedark'
+    end,
+    opts = {
+      style = 'cool',
+    },
+    enabled = false,
+  },
+
+  {
+    'comfysage/evergarden',
+    config = function(_, opts)
+      require('evergarden').setup(opts)
+      vim.cmd.colorscheme 'evergarden'
+    end,
+    opts = {
+      transparent_background = true,
+      override_terminal = true,
+      contrast_dark = 'medium', -- 'hard'|'medium'|'soft'
+      style = {
+        comment = { italic = true },
+      },
+      overrides = {
+        SpellBad = { default = true,  undercurl = true, },
+        SpellCap = { default = true,  undercurl = true, },
+        SpellLocal = { default = true,  undercurl = true, },
+        SpellRare = { default = true,  undercurl = true, },
+      },
+    }
+  },
+
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -151,19 +188,6 @@ require('lazy').setup({
           return '<Ignore>'
         end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
       end,
-    },
-  },
-
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function(_, opts)
-      require('onedark').setup(opts)
-      vim.cmd.colorscheme 'onedark'
-    end,
-    opts = {
-      style = 'cool',
     },
   },
 
@@ -393,6 +417,9 @@ require('telescope').setup {
     },
   },
 }
+
+-- [[ Configure Indent Blankline ]]
+require("ibl").setup()
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
