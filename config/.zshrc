@@ -118,6 +118,9 @@ setopt ignore_eof
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# includes vendor completions for ohmyzsh
+fpath=(/usr/share/zsh/vendor-completions $fpath)
+
 # fzf keybindings
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
