@@ -35,7 +35,7 @@ Combining dotfiles and Dockerfiles in the `dockerfiles` directory enable you pio
 docker build -f=nodedev.Dockerfile -t=nvimnode:v0.1 --build-arg=EMAIL={{YOUR_EMAIL}} --build-arg=NAME={{YOUR_NAME}} --build-arg=PASSWD={{YOUR_PASSWD}} .
 
 # Second start a container by mount your project into docker or you can use git to download later on
-docker run -v ~/workspace/{{YOUR-PROJECT}}:/root/{{YOUR-PROJECT}} -p 8654:22 --name {{IMAGE_NAME}} -d -it nvimnode:v0.1
+docker run -v ~/workspace/{{YOUR-PROJECT}}:/root/workspace/{{YOUR-PROJECT}} -p 8654:22 --name {{IMAGE_NAME}} -d -it nvimnode:v0.1
 
 # use ssh to start a tmux session in the very first time
 ssh user@<hostname> -p 8654 -t "tmux new -s {{TMUX_SESSION}}" 
@@ -45,3 +45,5 @@ ssh user@<hostname> -p 8654 -t "tmux a -t {{TMUX_SESSION}}"
 
 # enjoy your journey
 ```
+> [!Note] 
+> Don't forget to setup your ssh key in the very first time. The script will not setup it for you for security reason.
