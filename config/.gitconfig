@@ -1,7 +1,5 @@
-[user]
-    email = 
-    name = Rick Ryan
-    signingkey = ~/.ssh/id_ed25519.pub
+[include]
+        path = ~/workspace/.gitconfig-default
 
 [alias]
 	a = add
