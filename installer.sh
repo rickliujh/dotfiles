@@ -18,10 +18,10 @@ install_essentials() {
     # lazygit https://github.com/jesseduffield/lazygit
 
     log_task "Checking updates..."
-    sudo apt update
+    sudo apt-get update
 
     log_task "Installing..."
-    sudo apt install -y btop zsh ripgrep fd-find curl wget git tmux bat fzf unzip vim
+    sudo apt-get install -y btop zsh ripgrep fd-find curl wget git tmux bat fzf unzip vim
 
     sudo ln -sfnv /usr/bin/fdfind /usr/bin/fd
     sudo ln -sfnv /usr/bin/batcat /usr/bin/bat
@@ -105,20 +105,20 @@ install_rust() {
 
 
 install_python3() {
-    sudo apt install -y python3
+    sudo apt-get install -y python3
 }
 
 install_node() {
     # https://github.com/nodesource/distribution
     version="setup_lts.x"
     rm -rf $version
-    curl -fsSL "https://deb.nodesource.com/$version" | sudo -E bash - && sudo apt install -y nodejs
+    curl -fsSL "https://deb.nodesource.com/$version" | sudo -E bash - && sudo apt-get install -y nodejs
     rm -rf $version
     sudo corepack enable
 }
 
 install_dev_pkgs() {
-    sudo apt install -y build-essential
+    sudo apt-get install -y build-essential
 }
 
 install_extras() {
