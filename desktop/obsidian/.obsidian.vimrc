@@ -58,13 +58,13 @@ exmap rightbar obcommand app:toggle-right-sidebar
 exmap cmenu obcommand editor:context-menu
 exmap backlink obcommand backlink:open
 
-nmap <Space>fb :bold
-nmap <Space>fi :italics
-nmap <Space>ft :strikethrough
-nmap <Space>fh :highlight
-nmap <Space>fq :quote
-nmap gcc :comment
-nmap <Space>fc :clearfmt
+noremap <Space>fb :bold
+noremap <Space>fi :italics
+noremap <Space>ft :strikethrough
+noremap <Space>fh :highlight
+noremap <Space>fq :quote
+noremap gcc :comment
+noremap <Space>fc :clearfmt
 nmap <Space>sf :switcher
 nmap <Space>sg :livegrep
 nmap zo :togglefold

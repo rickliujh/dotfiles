@@ -3,5 +3,7 @@
   "obsidian-vimrc-support",
   "dataview",
   "obsidian-excalidraw-plugin",
-  "obsidian-tagfolder"
+  "obsidian-tagfolder",
+  "tag-wrangler",
+  "obsidian-minimal-settings"
 ]

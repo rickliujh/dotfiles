@@ -1,14 +1,5 @@
 {
   "editor:delete-paragraph": [],
-  "switcher:open": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "E"
-    }
-  ],
-  "markdown:toggle-preview": [],
   "workspace:close": [],
   "editor:insert-link": [],
   "editor:toggle-checklist-status": [],
@@ -88,6 +79,15 @@
         "Shift"
       ],
       "key": "P"
+    }
+  ],
+  "obsidian-minimal-settings:toggle-minimal-focus-mode": [
+    {
+      "modifiers": [
+        "Alt",
+        "Shift"
+      ],
+      "key": "Enter"
     }
   ]
 }
