@@ -1,0 +1,13 @@
+{
+  "accentColor": "",
+  "theme": "system",
+  "translucency": false,
+  "textFontFamily": "Arial",
+  "monospaceFontFamily": "MesloLGS Nerd Font",
+  "enabledCssSnippets": [
+    "vim-status-bar"
+  ],
+  "showViewHeader": true,
+  "nativeMenus": false,
+  "cssTheme": ""
+}
