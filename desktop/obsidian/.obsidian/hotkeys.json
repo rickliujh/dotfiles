@@ -89,5 +89,14 @@
       ],
       "key": "Enter"
     }
+  ],
+  "copy-document-as-html:smart-copy-as-html": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "C"
+    }
   ]
 }
