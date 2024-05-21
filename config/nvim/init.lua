@@ -99,8 +99,9 @@ require('lazy').setup({
         SpellCap = { default = true, undercurl = true, },
         SpellLocal = { default = true, undercurl = true, },
         SpellRare = { default = true, undercurl = true, },
-        LineNrAbove = { { '#5a6c75', 8 } },
-        LineNrBelow = { { '#5a6c75', 8 } },
+        CursorLineNr = { { '#88c096', 8 } },
+        LineNrAbove = { { '#77827c', 8 } },
+        LineNrBelow = { { '#77827c', 8 } },
       },
     }
   },
