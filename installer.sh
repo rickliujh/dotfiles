@@ -82,7 +82,7 @@ install_go() {
 
     rm -rf "./$name"
     curl -fSL "$url" -o "$name"
-    rm -rf /usr/local/go && tar -C /usr/local -xzf "$name"
+    sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf "$name"
     rm -rf "./$name"
 
     export PATH=$PATH:/usr/local/go/bin
