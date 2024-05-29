@@ -5,7 +5,7 @@
 set -eu
 source ./helper.sh
 
-ZSH_COMPLETION_PATH = "/usr/share/zsh/vendor-completions"
+ZSH_COMPLETION_PATH="/usr/share/zsh/vendor-completions"
 
 install_essentials() {
     # considering indtall
