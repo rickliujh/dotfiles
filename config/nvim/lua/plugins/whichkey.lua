@@ -6,7 +6,7 @@ return {
   opts = {
     keys = {
       scroll_down = "<c-d>", -- binding to scroll down inside the popup
-      scroll_up = "<c-u>", -- binding to scroll up inside the popup
+      scroll_up = "<c-u>",   -- binding to scroll up inside the popup
     },
   },
   keys = {
@@ -21,7 +21,7 @@ return {
 
   config = function()
     require('which-key').add {
-      -- document existing key chains
+      -- document existing key chains group
       { "<leader>1",  group = "More git" },
       { "<leader>1_", hidden = true },
       { "<leader>c",  group = "[C]ode" },
@@ -38,6 +38,17 @@ return {
       { "<leader>s_", hidden = true },
       { "<leader>w",  group = "[W]orkspace" },
       { "<leader>w_", hidden = true },
+      { "f",          group = "Surround" },
+      -- cpm keymaps
+      { "<C-n>",      desc = "Completion: next item" },
+      { "<C-p>",      desc = "Completion: previous item" },
+      { "<C-d>",      desc = "Completion: float page scroll down" },
+      { "<C-f>",      desc = "Completion: float page scroll up" },
+      { "<M-Enter>",  desc = "Completion: auto completion result page" },
+      -- surround keymaps
+      { "f",          desc = "surrounding",                            mode = { "n", "v" } },
+      { "fd",         desc = "delete surrounding ",                    mode = { "n", "v" } },
+      { "fc",         desc = "change surrounding",                     mode = { "n", "v" } },
     }
   end
 }
