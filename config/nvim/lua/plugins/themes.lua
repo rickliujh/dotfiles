@@ -45,7 +45,7 @@ return {
     name = "rose-pine",
     opts = {
       extend_background_behind_borders = true,
-      styles = { transparency = true }
+      styles = { transparency = true },
     },
     config = function(_, opts)
       require("rose-pine").setup(opts)

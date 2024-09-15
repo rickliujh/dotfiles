@@ -27,6 +27,12 @@ return {
   keys = function(_, keys)
     local dap = require 'dap'
     local dapui = require 'dapui'
+    local util = require("dapui.util")
+    local function is_active()
+      local b = not not dap.session()
+      if not b then util.notify("No active debug session", vim.log.levels.WARN) end
+      return b
+    end
     return {
       -- Basic debugging keymaps, feel free to change to your liking!
       { '<F5>',      dap.continue,          desc = 'Debug: Start/Continue' },
@@ -46,6 +52,7 @@ return {
       {
         '<leader>k',
         function()
+          if not is_active() then return end
           dapui.eval(nil, { enter = true })
         end,
         desc = 'Debug: eval variable'
@@ -53,6 +60,7 @@ return {
       {
         '<leader>o',
         function()
+          if not is_active() then return end
           dapui.float_element(nil, { enter = true })
         end,
         desc = 'Debug: open a debugger component'
