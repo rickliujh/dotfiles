@@ -3,9 +3,9 @@ return {
   version = '*',
   opts = {
     mappings = {
-      add = 'f',          -- Add surrounding in Normal and Visual modes
-      delete = 'fd',       -- Delete surrounding
-      replace = 'fc',      -- Replace surrounding
+      add = 'sa',          -- Add surrounding in Normal and Visual modes
+      delete = 'sd',       -- Delete surrounding
+      replace = 'sc',      -- Replace surrounding
     },
   }
 }

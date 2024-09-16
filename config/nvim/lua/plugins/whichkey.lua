@@ -46,9 +46,9 @@ return {
       { "<C-f>",      desc = "Completion: float page scroll up" },
       { "<M-Enter>",  desc = "Completion: auto completion result page" },
       -- surround keymaps
-      { "f",          desc = "surrounding",                            mode = { "n", "v" } },
-      { "fd",         desc = "delete surrounding ",                    mode = { "n", "v" } },
-      { "fc",         desc = "change surrounding",                     mode = { "n", "v" } },
+      { "sa",         desc = "add surrounding",                            mode = { "n", "v" } },
+      { "sd",         desc = "delete surrounding ",                    mode = { "n", "v" } },
+      { "sc",         desc = "change surrounding",                     mode = { "n", "v" } },
     }
   end
 }
