@@ -21,7 +21,6 @@ return {
   },
 
   config = function()
-    -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
       defaults = {
@@ -32,10 +31,23 @@ return {
           },
         },
       },
+      pickers = {
+        buffers = {
+          mappings = {
+            n = {
+              -- Deletes the selected buffer
+              ['d'] = {
+                require('telescope.actions').delete_buffer,
+                type = 'action',
+              },
+            },
+          },
+        },
+      },
     }
 
     -- [[ Configure Indent Blankline ]]
-    require("ibl").setup()
+    require('ibl').setup()
 
     -- Enable telescope fzf native, if installed
     pcall(require('telescope').load_extension, 'fzf')
@@ -58,5 +70,5 @@ return {
     vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-  end
+  end,
 }
