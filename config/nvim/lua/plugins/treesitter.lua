@@ -27,7 +27,12 @@ return {
           'typescript',
           'vimdoc',
           'vim',
-          'bash'
+          'bash',
+          'diff',
+          'html',
+          'markdown',
+          'markdown_inline',
+          'query',
         },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
