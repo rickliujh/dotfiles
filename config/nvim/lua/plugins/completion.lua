@@ -48,6 +48,16 @@ return {
           luasnip.lsp_expand(args.body)
         end,
       },
+
+      matching = {
+        disallow_fuzzy_matching = false,
+        disallow_partial_matching = false,
+        disallow_prefix_unmatching = false,
+        disallow_fullfuzzy_matching = false,
+        disallow_partial_fuzzy_matching = false,
+        disallow_symbol_nonprefix_matching = false,
+      },
+
       -- These movements are used for moving things
       -- like hover content when you're in the INSERT mode
       -- read `:help ins-completion` for more
@@ -58,8 +68,8 @@ return {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
 
         -- Scroll the documentation window [b]ack / [f]orward
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
 
         -- Manually trigger a completion from nvim-cmp.
         --  Generally you don't need this, because nvim-cmp will display
