@@ -43,6 +43,7 @@ return {
     luasnip.config.setup {}
 
     cmp.setup {
+      preselect = 'None',
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -113,6 +114,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'lazydev', group_index = 0 },
+        { name = 'buffer' },
         { name = 'path' },
       },
     }
