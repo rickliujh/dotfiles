@@ -34,6 +34,8 @@ return {
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-cmdline',
   },
 
   config = function()
@@ -173,5 +175,47 @@ return {
         { name = 'path' },
       },
     }
+
+    -- cmdline setup
+    local mapping = cmp.mapping.preset.cmdline({
+      ['<CR>'] = {
+        c = cmp.mapping.confirm({ select = false }),
+      },
+    })
+
+    local bufcfg = {
+      name = 'buffer',
+      option = {
+        keyword_pattern = [[\k\+]],
+        -- keyword_length = 2,
+        -- visible buffer only, see: https://github.com/hrsh7th/cmp-buffer?tab=readme-ov-file#visible-buffers
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end
+      },
+    }
+
+    cmp.setup.cmdline({ "/", "?" }, {
+      completion = { autocomplete = false },
+      mapping = mapping,
+      sources = {
+        bufcfg,
+      }
+    })
+
+    -- Use cmdline & path source for ':'.
+    cmp.setup.cmdline({ ':' }, {
+      completion = { autocomplete = false },
+      mapping = mapping,
+      sources = {
+        { name = 'path' },
+        { name = 'cmdline' },
+        bufcfg,
+      },
+    })
   end
 }
