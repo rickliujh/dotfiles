@@ -46,6 +46,12 @@ return {
     opts = {
       extend_background_behind_borders = true,
       styles = { transparency = true },
+      highlight_groups = {
+        -- see: https://neovim.io/doc/user/syntax.html#hl-Pmenu
+        Pmenu = { bg = '#393552' },
+        NormalFloat = { bg = '#393552' },
+        PmenuSel = { bg = 'pine' },
+      },
     },
     config = function(_, opts)
       require("rose-pine").setup(opts)
