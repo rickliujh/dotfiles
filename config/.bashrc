@@ -46,3 +46,4 @@ fi
 
 # Local configurations
 [ -f ~/.local.sh ] && source ~/.local.sh
+

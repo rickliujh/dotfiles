@@ -95,14 +95,12 @@ install_rust() {
 
     zsh="$HOME/.oh-my-zsh"
 
-    sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" "" -y
-    mkdir -p "$zsh/completions/"
+    sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" --no-modify-path -y
 
     source "$HOME/.cargo/env" 
     rustup completions zsh rustup> "$ZSH_COMPLETION_PATH/_rustup"
     rustup completions zsh cargo > "$ZSH_COMPLETION_PATH/_cargo"
-
-    echo source '$HOME'/.cargo/env >> "$HOME/.local.sh"
+    # echo source '$HOME'/.cargo/env >> "$HOME/.local.sh"
 }
 
 
