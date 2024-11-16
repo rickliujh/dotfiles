@@ -5,7 +5,7 @@
 set -eu
 source ./helper.sh
 
-ZSH_COMPLETION_PATH="/usr/share/zsh/vendor-completions"
+ZSH_COMPLETION_PATH="$HOME/.oh-my-zsh/completions"
 
 install_essentials() {
     # considering indtall
@@ -92,8 +92,7 @@ install_go() {
 
 install_rust() {
     log_task "Installing rust lang..."
-
-    zsh="$HOME/.oh-my-zsh"
+    mkdir -p $ZSH_COMPLETION_PATH
 
     sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" --no-modify-path -y
 
