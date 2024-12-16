@@ -106,6 +106,7 @@ install_rust() {
 
 install_python3() {
     sudo apt-get install -y python3
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 }
 
 install_node() {
