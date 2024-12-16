@@ -77,7 +77,8 @@ install_git_delta() {
 install_go() {
     log_task "Installing golang..."
 
-    url="https://go.dev/dl/go1.22.0.linux-amd64.tar.gz"
+    latest=$(curl "https://go.dev/VERSION?m=text" | head -n 1)
+    url="https://go.dev/dl/$latest.linux-amd64.tar.gz"
     name="golang.tar.gz"
 
     rm -rf "./$name"
