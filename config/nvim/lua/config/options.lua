@@ -3,7 +3,7 @@ vim.g.maplocalleader = ' '
 
 -- Highlight the line number.
 vim.o.cursorline = true
-vim.o.cursorlineopt = 'number'
+-- vim.o.cursorlineopt = 'number'
 vim.o.relativenumber = true
 
 -- Enable break indent
