@@ -79,6 +79,7 @@ plugins=(
         azure
         kubectl
         terraform
+        aws
 
         # external
         fzf-tab
