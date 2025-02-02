@@ -30,11 +30,12 @@ install_essentials() {
 }
 
 install_nvim() {
-    log_task "Installing neovim..."
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-    sudo rm -rf /opt/nvim-linux64
-    sudo tar -C /opt -xzf nvim-linux64.tar.gz
-    rm -rf nvim-linux64.tar.gz
+    log_task "Installing NEOVIM..."
+    curl -L https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz -o nvim.tar.gz
+    sudo rm -rf /opt/nvim
+    sudo mkdir /opt/nvim
+    sudo tar -xzvf nvim.tar.gz -C /opt/nvim --strip-components=1
+    rm -rf nvim.tar.gz
 }
 
 install_oh_my_zsh() {
