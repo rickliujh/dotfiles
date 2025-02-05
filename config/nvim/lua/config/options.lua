@@ -59,3 +59,6 @@ vim.wo.number = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
+
+-- Set cursor to block in insert mode
+vim.o.guicursor = "n-v-i-c:block-Cursor"
