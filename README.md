@@ -1,5 +1,28 @@
 # dotfiles
-Linux and desktop configuration and setup script.
+Linux and desktop configuration and setup scripts.
+
+## Features
+
+![showcase](./static/showcase.png)
+
+1. Integrated development environment runs on everywhere
+    - neovim
+    - tmux
+    - LSP for any languages
+    - personal themes
+2. Tools that are necessary for Linux as Developer
+    - zsh and autocompletion for docker, kubectl, aws, etc.
+    - btop, ripgrep, bat, fzf
+    - lazygit
+    - docker, sysbox
+3. Ergonomic keymaps, shortcuts, and config of personal take
+    - .gitconfig
+    - .tmux.conf
+    - neovim, .vimrc
+    - helper functions
+    - .zshrc, .bashrc
+4. Remote development on any cloud environment and docker container
+
 
 ## Installation
 
