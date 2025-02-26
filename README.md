@@ -70,3 +70,17 @@ ssh user@<hostname> -p 8654 -t "tmux a -t {{TMUX_SESSION}}"
 ```
 > [!Note] 
 > Don't forget to setup your ssh key in the very first time. The script will not setup it for you for security reason.
+
+## MISC
+
+### WSL2 native docker setup without docker desktop
+
+if WSL2 is not booted by systemd, you will need to put below script in ~/.local.sh for starting dockerd automatically.
+
+```
+# Check if dockerd is already running
+if ! pgrep -f "dockerd" > /dev/null; then
+    sudo bash -c "/usr/bin/dockerd > /var/log/dockerd.log 2>&1 &"
+    echo "Docker daemon started (log: /var/log/dockerd.log)"
+fi
+```
