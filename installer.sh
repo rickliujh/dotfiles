@@ -23,7 +23,7 @@ install_essentials() {
     sudo apt-get update
 
     log_task "Installing..."
-    sudo apt-get install -y btop zsh ripgrep fd-find curl wget git tmux bat fzf unzip vim lsof
+    sudo apt-get install -y btop zsh ripgrep fd-find curl wget git tmux bat fzf unzip vim lsof tree
 
     sudo ln -sfnv /usr/bin/fdfind /usr/bin/fd
     sudo ln -sfnv /usr/bin/batcat /usr/bin/bat
