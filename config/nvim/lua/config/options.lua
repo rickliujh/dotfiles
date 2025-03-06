@@ -62,3 +62,17 @@ vim.o.mouse = 'a'
 
 -- Set cursor to block in insert mode
 vim.o.guicursor = "n-v-i-c:block-Cursor"
+
+-- diagnostics setting
+vim.diagnostic.config {
+  signs = true,
+  underline = true,
+  virtual_text = true,
+  virtual_lines = true,
+  update_in_insert = true,
+  float = {
+    -- diagnostics border
+    border = 'rounded',
+    focusable = true,
+  }
+}
