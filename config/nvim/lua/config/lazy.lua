@@ -18,5 +18,9 @@ require("lazy").setup({
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true },
+  -- border for lazy
+  ui = {
+    border = "rounded",
+  }
 })
 

@@ -72,15 +72,17 @@ return {
       TypeParameter = "",
     }
     cmp.setup {
-      -- window = {
-      --   completion = { -- rounded border; thin-style scrollbar
-      --     border = 'rounded',
-      --   },
-      --   documentation = { -- no border; native-style scrollbar
-      --     border = 'rounded',
-      --     -- other options
-      --   },
-      -- },
+      -- popup border
+      window = {
+        completion = { -- rounded border; thin-style scrollbar
+          border = 'rounded',
+        },
+        documentation = { -- no border; native-style scrollbar
+          border = 'rounded',
+          -- other options
+        },
+      },
+
       preselect = 'None',
 
       formatting = {
