@@ -140,13 +140,12 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "adjustIndistinguishableColors": "indexed",
-                "antialiasingMode": "cleartype",
-                "colorScheme": "rose-pine-moon",
+                "antialiasingMode": "grayscale",
+                "colorScheme": "rose-pine-low-contrast",
                 "cursorShape": "filledBox",
-                "experimental.retroTerminalEffect": false,
                 "font": 
                 {
+                    "builtinGlyphs": true,
                     "face": "Iosevka Nerd Font Mono",
                     "size": 14
                 },
@@ -154,14 +153,16 @@
                 "hidden": false,
                 "historySize": 9001,
                 "name": "Ubuntu",
-                "opacity": 90,
-                "padding": "8",
+                "opacity": 89,
+                "padding": "2",
                 "scrollbarState": "hidden",
                 "source": "Windows.Terminal.Wsl",
                 "useAcrylic": true
             }
         ]
     },
+    "rendering.disablePartialInvalidation": true,
+    "rendering.graphicsAPI": "direct3d11",
     "schemes": 
     [
         {
@@ -211,6 +212,29 @@
             "yellow": "#EA9D34"
         },
         {
+            "background": "#141415",
+            "black": "#252530",
+            "blue": "#9BB4BC",
+            "brightBlack": "#878787",
+            "brightBlue": "#9BB4BC",
+            "brightCyan": "#C48282",
+            "brightGreen": "#6E94B2",
+            "brightPurple": "#BB9DBD",
+            "brightRed": "#DF6882",
+            "brightWhite": "#CDCDCD",
+            "brightYellow": "#E8B589",
+            "cursorColor": "#69647E",
+            "cyan": "#C48282",
+            "foreground": "#CDCDCD",
+            "green": "#6E94B2",
+            "name": "rose-pine-low-contrast",
+            "purple": "#BB9DBD",
+            "red": "#DF6882",
+            "selectionBackground": "#2A2837",
+            "white": "#CDCDCD",
+            "yellow": "#E8B589"
+        },
+        {
             "background": "#232136",
             "black": "#393552",
             "blue": "#9CCFD8",
@@ -232,11 +256,11 @@
             "selectionBackground": "#312F44",
             "white": "#E0DEF4",
             "yellow": "#F6C177"
-        },
+        }
     ],
     "snapToGridOnResize": true,
     "tabWidthMode": "titleLength",
-    "theme": "rose-pine",
+    "theme": "rose-pine-low-contrast",
     "themes": 
     [
         {
@@ -286,6 +310,29 @@
             }
         },
         {
+            "name": "rose-pine-low-contrast",
+            "tab": 
+            {
+                "background": "#141415FF",
+                "iconStyle": "default",
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "tabRow": 
+            {
+                "background": "#141415FF",
+                "unfocusedBackground": "#908CAAFF"
+            },
+            "window": 
+            {
+                "applicationTheme": "dark",
+                "experimental.rainbowFrame": false,
+                "frame": null,
+                "unfocusedFrame": null,
+                "useMica": false
+            }
+        },
+        {
             "name": "rose-pine-moon",
             "tab": 
             {
@@ -309,5 +356,5 @@
             }
         }
     ],
-    "useAcrylicInTabRow": true
+    "useAcrylicInTabRow": false
 }
