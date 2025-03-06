@@ -58,7 +58,7 @@ return {
 
       vim.cmd.colorscheme 'rose-pine-main'
     end,
-    enabled = true,
+    enabled = false,
   },
 
   {
@@ -85,5 +85,17 @@ return {
       },
     },
     enabled = false,
+  },
+
+  {
+    "vague2k/vague.nvim",
+    config = function()
+      require("vague").setup({
+        transparent = false,
+      })
+
+      vim.cmd.colorscheme 'vague'
+    end,
+    enabled = true,
   },
 }
