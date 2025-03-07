@@ -42,7 +42,9 @@ return { -- Autoformat
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
     },
   },
-  config = function()
+  config = function(_, opts)
+    require("conform").setup(opts)
+
     -- Define a command to run async formatting
     vim.api.nvim_create_user_command('Format', function(args)
       local range = nil

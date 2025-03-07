@@ -19,8 +19,10 @@ return {
     }
   },
 
-  config = function()
-    require('which-key').add {
+  config = function(_, opts)
+    local wk = require('which-key')
+    wk.setup(opts)
+    wk.add {
       -- document existing key chains group
       { "<leader>1",  group = "More git" },
       { "<leader>1_", hidden = true },
@@ -48,7 +50,7 @@ return {
       { "<C-f>",      desc = "Completion: float page scroll up" },
       { "<M-Enter>",  desc = "Completion: auto completion result page" },
       -- surround keymaps
-      { "sa",         desc = "add surrounding",                            mode = { "n", "v" } },
+      { "sa",         desc = "add surrounding",                        mode = { "n", "v" } },
       { "sd",         desc = "delete surrounding ",                    mode = { "n", "v" } },
       { "sc",         desc = "change surrounding",                     mode = { "n", "v" } },
     }
