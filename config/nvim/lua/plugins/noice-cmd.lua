@@ -1,3 +1,14 @@
+--[[
+  Usage
+    :Noice or :Noice history shows the message history
+    :Noice last shows the last message in a popup
+    :Noice dismiss dismiss all visible messages
+    :Noice errors shows the error messages in a split. Last errors on top
+    :Noice disable disables Noice
+    :Noice enable enables Noice
+    :Noice stats shows debugging stats
+    :Noice telescope opens message history in Telescope
+--]]
 return {
   {
     "folke/noice.nvim",
@@ -13,11 +24,11 @@ return {
       },
       -- you can enable a preset for easier configuration
       presets = {
-        bottom_search = true,     -- use a classic bottom cmdline for search
-        command_palette = false,   -- position the cmdline and popupmenu together
+        bottom_search = true,         -- use a classic bottom cmdline for search
+        command_palette = false,      -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false,       -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = true,   -- add a border to hover docs and signature help
+        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = true,        -- add a border to hover docs and signature help
       },
     },
     dependencies = {
@@ -27,6 +38,19 @@ return {
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
-    }
+    },
+    config = function(_, opts)
+      local noice = require("noice")
+
+      noice.setup(opts)
+
+      vim.keymap.set("n", "<leader>nc", function()
+        noice.cmd("dismiss")
+      end, { desc = 'Noice: dismiss all visible messages' })
+
+      vim.keymap.set("n", "<leader>nh", function()
+        noice.cmd("pick")
+      end, { desc = 'Noice: browse notification history' })
+    end
   }
 }

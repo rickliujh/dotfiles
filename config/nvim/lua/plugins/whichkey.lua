@@ -38,6 +38,8 @@ return {
       { "<leader>s_", hidden = true },
       { "<leader>w",  group = "[W]orkspace" },
       { "<leader>w_", hidden = true },
+      { "<leader>n",  group = "[N]oice" },
+      { "<leader>n_", hidden = true },
       { "f",          group = "Surround" },
       -- cpm keymaps
       { "<C-n>",      desc = "Completion: next item" },
