@@ -8,6 +8,8 @@
 	c = commit -m
 	co = checkout
 	d = diff --word-diff -M -C
+	# default diff without delta, useful for commit message
+	dd = -c pager.diff='less -R' diff -M -C
 	l = pull
 	m = merge
 	p = push
