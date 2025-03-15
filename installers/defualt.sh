@@ -83,8 +83,8 @@ install_rust() {
     sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" --no-modify-path -y
 
     source "$HOME/.cargo/env" 
-    rustup completions zsh rustup> "$ZSH_COMPLETION_PATH/_rustup"
-    rustup completions zsh cargo > "$ZSH_COMPLETION_PATH/_cargo"
-    # echo source '$HOME'/.cargo/env >> "$HOME/.local.sh"
+    # rust toolchain auto completions
+    echo 'eval "$(rustup completions zsh rustup)"' >> ~/.local.sh
+    echo 'eval "$(rustup completions zsh cargo )"' >> ~/.local.sh
 }
 
