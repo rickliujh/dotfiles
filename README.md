@@ -22,6 +22,7 @@ Linux and desktop configuration and setup scripts.
     - helper functions
     - .zshrc, .bashrc
 4. Remote development on any cloud environment and docker container
+5. Support mainstream Linux distros: Debain, Arch
 
 
 ## Installation
