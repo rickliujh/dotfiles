@@ -77,7 +77,7 @@ install_go() {
 install_rust() {
     log_task "Installing rust lang..."
 
-    sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" --no-modify-path -y
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 
     source "$HOME/.cargo/env" 
     # rust toolchain auto completions
