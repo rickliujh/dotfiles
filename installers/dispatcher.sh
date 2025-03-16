@@ -39,7 +39,7 @@ install_extras() {
 install_without_languages() {
     install_essentials
     install_nvim
-    install_oh_my_zsh
+    install_prezto
     install_git_delta
     install_tmux_plugin
 }
