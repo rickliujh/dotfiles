@@ -3,8 +3,9 @@
 # -e: exit on error
 # -u: exit on unset variables
 set -eu
+
 source ./helper.sh
-source ./installer.sh
+source ./installers/dispatcher.sh
 source ./backup.sh
 source ./symlink.sh
 
