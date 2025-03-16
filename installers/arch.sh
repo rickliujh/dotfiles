@@ -21,9 +21,6 @@ install_essentials() {
     log_task "Checking updates..."
     log_task "Installing..."
     yes | sudo pacman -S btop zsh ripgrep fd curl wget git tmux bat fzf unzip vim lsof tree
-
-    sudo ln -sfnv /usr/bin/fdfind /usr/bin/fd
-    sudo ln -sfnv /usr/bin/batcat /usr/bin/bat
 }
 
 install_nvim() {
