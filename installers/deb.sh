@@ -87,3 +87,4 @@ install_sysbox() {
 
     # to uninstall, see: https://github.com/nestybox/sysbox/blob/master/docs/user-guide/install-package.md#uninstallation
 }
+

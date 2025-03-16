@@ -4,17 +4,20 @@
 # -u: exit on unset variables
 set -eu
 
-source ../helper.sh
+readonly CURR_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+source $CURR_DIR/../helper.sh
+source $CURR_DIR/./defualt.sh
 source /etc/os-release
 
 case $ID_LIKE in
   debian) 
     log_blue "Detected Debian Base System"
-    source ./deb.sh
+    source $CURR_DIR/./deb.sh
     ;;
   arch) 
     log_blue "Detected Arch Base System"
-    source ./arch.sh
+    source $CURR_DIR/./arch.sh
     ;;
   *) 
     log_error "Operation aborted: Unknown distribution"
