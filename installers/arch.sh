@@ -45,7 +45,7 @@ install_rust() {
     log_task "Installing rust lang..."
 
     yes | sudo pacman -S rustup
-    rustup --no-modify-path -y
+    rustup -- --no-modify-path -y
 
     source "$HOME/.cargo/env" 
 

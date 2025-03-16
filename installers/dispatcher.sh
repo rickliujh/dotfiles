@@ -7,7 +7,7 @@ set -eu
 readonly CURR_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 source $CURR_DIR/../helper.sh
-source $CURR_DIR/./defualt.sh
+source $CURR_DIR/./default.sh
 source /etc/os-release
 
 case $ID_LIKE in
