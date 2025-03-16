@@ -5,9 +5,11 @@
 	a = add
 	# Ignores whitespace changes, code movement, and renames
 	bl = blame -w -C -C -C --color-lines --color-by-age
-	c = commit -m
+	c = commit --verbose
 	co = checkout
-	d = diff --word-diff -M -C
+	d = diff -M -C
+	# word diff
+	dw = diff --word-diff -M -C
 	# default diff without delta, useful for commit message
 	dd = -c pager.diff='less -R' diff -M -C
 	l = pull
@@ -61,7 +63,8 @@
 
 [delta]
 	navigate = true    # use n and N to move between diff sections
-	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	dark = true # set to false if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	line-numbers = true
 	features = Coldark-Dark
 
 [fetch]
@@ -72,7 +75,7 @@
 	diffFilter = delta --color-only --highlight-removed
 
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 	log = true
 
 [push]
