@@ -73,6 +73,10 @@ install_dev_pkgs() {
 
 install_docker() {
     yes | sudo pacman -S docker
+    sudo systemctl start docker.service
+    sudo systemctl enable docker.service
+    sudo usermod -aG docker $USER
+    newgrp docker
 }
 
 install_sysbox() {
