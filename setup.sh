@@ -26,7 +26,7 @@ setup_all() {
 }
 
 show_menu() {
-    echo -e "\u001b[32;1m Setting up your env with dots2k...\u001b[0m"
+    echo -e "\u001b[32;1m Setting up your env ...\u001b[0m"
     echo -e " \u001b[37;1m\u001b[4mSelect an option:\u001b[0m"
     echo -e "  \u001b[34;1m (0) Setup Everything \u001b[0m"
     echo -e "  \u001b[34;1m (1) Install Packages \u001b[0m"
