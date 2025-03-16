@@ -38,19 +38,6 @@ install_go() {
     yes | sudo pacman -S go
 }
 
-install_rust() {
-    log_task "Installing rust lang..."
-
-    yes | sudo pacman -S rustup
-    rustup -- --no-modify-path -y
-
-    source "$HOME/.cargo/env" 
-
-    # rust toolchain auto completions
-    echo 'eval "$(rustup completions zsh rustup)"' >> ~/.local.sh
-    echo 'eval "$(rustup completions zsh cargo )"' >> ~/.local.sh
-}
-
 install_python3() {
     log_task "Installing Python3 and uv..."
 
