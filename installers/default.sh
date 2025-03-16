@@ -5,8 +5,6 @@
 set -eu
 source ./helper.sh
 
-ZSH_COMPLETION_PATH="$HOME/.oh-my-zsh/completions"
-
 install_pacapt() {
     sudo wget -O /usr/local/bin/pacapt https://github.com/icy/pacapt/raw/ng/pacapt
     sudo chmod 755 /usr/local/bin/pacapt
@@ -78,7 +76,6 @@ install_go() {
 
 install_rust() {
     log_task "Installing rust lang..."
-    mkdir -p $ZSH_COMPLETION_PATH
 
     sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" --no-modify-path -y
 
