@@ -20,8 +20,10 @@ install_nvim() {
     rm -rf nvim.tar.gz
 }
 
+# Deprecated, using prezto for better performance
 install_oh_my_zsh() {
     log_task "Installing oh-my-zsh..."
+    log_manual_action "oh-my-zsh is deprecated, suggesting using prezto instead for better performance. To install, try install_prezto"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
     log_task "Installing zsh plugins..."
@@ -39,6 +41,49 @@ install_oh_my_zsh() {
     git clone "$gh/hlissner/zsh-autopair" "$omz_plugin/zsh-autopair"
 
     chsh -s "$(which zsh)"
+}
+
+# install prezto if not exist, otherwise, update it
+install_prezto() {
+    log_task "Installing prezto..."
+
+    if ! command -v zsh 2>&1 >/dev/null; then
+        log_red "zsh is not installed, skip installing prezto"
+        return 0
+    fi
+
+    if [ ! -d ${ZDOTDIR:-$HOME}/.zprezto ]; then
+        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+        
+    zsh -c "$(cat << 'EOF'
+        setopt EXTENDED_GLOB
+        for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^(README.md|zshrc|zpreztorc)(.N); do
+          ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+        done 
+EOF
+    )"
+
+        git clone https://github.com/Aloxaf/fzf-tab ${ZDOTDIR:-$HOME}/.zprezto/contrib/fzf-tab
+        chsh -s /bin/zsh
+    else
+        log_blue "prezto detected, check for update..."   
+        cd ${ZDOTDIR:-$HOME}/.zprezto
+        git pull
+        git submodule sync --recursive
+        git submodule update --init --recursive
+
+        # update all plugins under folder contrib
+        for repo in ${ZDOTDIR:-$HOME}/.zprezto/contrib/*; do
+            # check if it's a directory and contains a .git subdirectory
+            if [ -d "$repo" ] && [ -d "$repo/.git" ]; then
+                echo "updating $repo..."
+                (cd "$repo" && git pull)
+                if [ ! $? -eq 0 ]; then
+                    echo "Failed to update $repo"
+                fi
+            fi
+        done
+    fi
 }
 
 install_tmux_plugin() {
