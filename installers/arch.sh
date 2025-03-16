@@ -55,6 +55,8 @@ install_rust() {
 }
 
 install_python3() {
+    log_task "Installing Python3 and uv..."
+
     yes | sudo pacman -S python3 python-uv
 
     # uv auto completions
@@ -63,6 +65,8 @@ install_python3() {
 }
 
 install_node() {
+    log_task "Installing node..."
+
     yes | sudo pacman -S nodejs
     sudo corepack enable
 }
@@ -72,14 +76,33 @@ install_dev_pkgs() {
 }
 
 install_docker() {
+    log_task "Installing docker..."
+
     yes | sudo pacman -S docker
-    sudo systemctl start docker.service
     sudo systemctl enable docker.service
+    sudo systemctl start docker.service
     sudo usermod -aG docker $USER
     newgrp docker
 }
 
 install_sysbox() {
-    yay -ScR --answerclean All --answerdiff All --answeredit All --answerupgrade Repo sysbox-ce-bin
+    log_task "Installing sysbox-runc..."
+
+    yes | yay -S --answerclean All --answerdiff All --answeredit All --answerupgrade Repo sysbox-ce-bin
+    
+    sudo systemctl enable sysbox.service
+    sudo systemctl start sysbox.service
+
+    mkdir -p /etc/docker
+    
+    echo '{ 
+  "runtimes": { 
+    "sysbox-runc": { 
+      "path": "/usr/bin/sysbox-runc" 
+    } 
+  } 
+}' | sudo tee /etc/docker/daemon.json > /dev/null
+
+    sudo systemctl restart docker.service
     # to uninstall, see: https://github.com/nestybox/sysbox/blob/master/docs/user-guide/install-package.md#uninstallation
 }
