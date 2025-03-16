@@ -53,10 +53,10 @@ install_dev_pkgs() {
 install_docker() {
     if ! command -v docker 2>&1 >/dev/null
     then
-        echo "uninstall conflicting packages..."
+        log "uninstall conflicting packages..."
         for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
         
-        echo "setting up Docker's apt repository..."
+        log "setting up Docker's apt repository..."
         # Add Docker's official GPG key:
         sudo apt-get update
         sudo apt-get install ca-certificates curl
@@ -71,7 +71,7 @@ install_docker() {
           sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         sudo apt-get update
 
-        echo "install the latest version..."
+        log "install the latest version..."
         sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     fi
 }
@@ -88,3 +88,17 @@ install_sysbox() {
     # to uninstall, see: https://github.com/nestybox/sysbox/blob/master/docs/user-guide/install-package.md#uninstallation
 }
 
+install_eza() {
+    log_blue "Installing eza, rust lang is required..."
+    cargo install eza
+}
+
+install_tobgrade() {
+    log_blue "Installing topgrade, rust lang is required..."
+    cargo install topgrade 
+}
+
+install_lazygit() {
+    log_blue "Installing lazygit, golang is required..."
+    go install github.com/jesseduffield/lazygit@latest
+}

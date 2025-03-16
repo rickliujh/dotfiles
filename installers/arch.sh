@@ -70,7 +70,7 @@ install_docker() {
 }
 
 install_sysbox() {
-    log_task "Installing sysbox-runc..."
+    log_task "Installing sysbox-runc from AUR..."
 
     yes | yay -S --answerclean All --answerdiff All --answeredit All --answerupgrade Repo sysbox-ce-bin
     
@@ -89,4 +89,19 @@ install_sysbox() {
 
     sudo systemctl restart docker.service
     # to uninstall, see: https://github.com/nestybox/sysbox/blob/master/docs/user-guide/install-package.md#uninstallation
+}
+
+install_eza() {
+    log_blue "Installing eza..."
+    yes | sudo pacman -S eza
+}
+
+install_tobgrade() {
+    log_blue "Installing topgrade from AUR..."
+    yes | yay -S --answerclean All --answerdiff All --answeredit All --answerupgrade Repo topgrade-bin
+}
+
+install_lazygit() {
+    log_blue "Installing lazygit..."
+    yes | sudo pacman -S lazygit
 }

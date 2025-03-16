@@ -29,11 +29,11 @@ install_extras() {
     log_task "Installing extra package..."
     check_lang_installed
 
-    cargo install eza
-    cargo install topgrade 
-    go install github.com/jesseduffield/lazygit@latest
     install_docker
     install_sysbox
+    install_eza
+    install_tobgrade
+    install_lazygit
 }
 
 install_without_languages() {
