@@ -102,3 +102,19 @@ install_lazygit() {
     log_blue "Installing lazygit, golang is required..."
     go install github.com/jesseduffield/lazygit@latest
 }
+
+install_zoxide() {
+    log_blue "Installing zoxide..."
+    cargo install zoxide --locked
+
+    if [ ! -f "~/.local_sh" ]; then
+        touch ~/.local.sh
+    fi
+    echo '
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+else
+  return 1
+fi' >> ~/.local.sh
+}
+

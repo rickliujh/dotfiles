@@ -105,3 +105,21 @@ install_lazygit() {
     log_blue "Installing lazygit..."
     yes | sudo pacman -S lazygit
 }
+
+install_zoxide() {
+    log_blue "Installing zoxide..."
+    yes | sudo pacman -S zoxide
+
+    if [ ! -f "~/.local_sh" ]; then
+        touch ~/.local.sh
+    fi
+    cat << 'EOF' >> ~/.local.sh
+
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+else
+  return 1
+fi
+EOF
+}
+
