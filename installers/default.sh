@@ -57,7 +57,7 @@ install_prezto() {
         
     zsh -c "$(cat << 'EOF'
         setopt EXTENDED_GLOB
-        for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^(README.md|zshrc|zpreztorc)(.N); do
+        for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^(README.md|zshrc|zshenv|zpreztorc)(.N); do
           ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
         done 
 EOF
