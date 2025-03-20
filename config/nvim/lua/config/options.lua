@@ -30,12 +30,12 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- Set undotree file
-vim.o.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+vim.o.undodir = os.getenv 'XDG_DATA_HOME' .. '/nvim/undodir'
 vim.o.undofile = true
 
 vim.o.scrolloff = 8
 
-vim.o.colorcolumn = "85"
+vim.o.colorcolumn = '85'
 
 -- A TAB character looks like 4 spaces
 vim.o.tabstop = 4
@@ -48,7 +48,7 @@ vim.o.shiftwidth = 4
 
 -- enable spell check
 vim.o.spell = true
-vim.o.spelllang = "en_us"
+vim.o.spelllang = 'en_us'
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -61,7 +61,7 @@ vim.wo.number = true
 vim.o.mouse = 'a'
 
 -- Set cursor to block in insert mode
-vim.o.guicursor = "n-v-i-c:block-Cursor"
+vim.o.guicursor = 'n-v-i-c:block-Cursor'
 
 -- diagnostics setting
 vim.diagnostic.config {
@@ -74,5 +74,5 @@ vim.diagnostic.config {
     -- diagnostics border
     border = 'rounded',
     focusable = true,
-  }
+  },
 }
