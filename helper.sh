@@ -88,3 +88,9 @@ check_lang_installed() {
     go version && rustc --version || error "Install essential languages first"
 }
 
+PREZTO_COMP=$HOME/.zprezto/modules/completion/external/src
+
+touch_zsh_completion() {
+    filename=$1
+    cat > "$PREZTO_COMP/$filename"
+}

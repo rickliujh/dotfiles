@@ -3,7 +3,6 @@
 # -e: exit on error
 # -u: exit on unset variables
 set -eu
-source ./helper.sh
 
 install_pacapt() {
     sudo wget -O /usr/local/bin/pacapt https://github.com/icy/pacapt/raw/ng/pacapt
@@ -126,7 +125,7 @@ install_rust() {
 
     source "$HOME/.cargo/env" 
     # rust toolchain auto completions
-    echo 'eval "$(rustup completions zsh rustup)"' >> ~/.local.sh
-    echo 'eval "$(rustup completions zsh cargo )"' >> ~/.local.sh
+    # for rustup auto complection call f_eval_comp
+    cat $(rustc --print sysroot)/share/zsh/site-functions/_cargo | touch_zsh_completion "_cargo" 
 }
 

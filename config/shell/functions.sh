@@ -9,3 +9,16 @@
 f_kfr() {
     lsof +D ./ | awk '{print $2}' | tail -n +2 | xargs -r kill -9
 }
+
+# Eval extra completion for use, those completion didn't support lazy init in zsh,
+# instead, they're eval into zsh secssion, in order to avoid unnecessary functions
+# to slow down the shell, they're triggered manually whenever needed
+# Includes:
+# uv
+# uvx
+# rustup
+f_eval_comp() {
+    eval "$(uv generate-shell-completion zsh)"
+    eval "$(uvx --generate-shell-completion zsh)"
+    eval "$(rustup completions zsh rustup)"
+}

@@ -1,13 +1,16 @@
+setopt ignore_eof
+
+# Key Binding
+bindkey '^.' autosuggest-fetch
+
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-setopt ignore_eof
-
 fpath=(/usr/share/zsh/vendor-completions $fpath)
 
 # fzf keybindings
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Common environment variables
 [ -f ~/.config/shell/envars.sh ] && source ~/.config/shell/envars.sh
@@ -20,7 +23,3 @@ fpath=(/usr/share/zsh/vendor-completions $fpath)
 
 # Local configurations
 [ -f ~/.local.sh ] && source ~/.local.sh
-
-# Key Binding
-bindkey '^.' autosuggest-fetch
-

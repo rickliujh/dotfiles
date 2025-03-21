@@ -32,9 +32,7 @@ install_python3() {
     sudo apt-get install -y python3
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
-    # uv auto completions
-    echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.local.sh
-    echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.local.sh
+    # for uv auto completions call f_eval_comp
 }
 
 install_node() {

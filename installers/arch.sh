@@ -43,9 +43,7 @@ install_python3() {
 
     yes | sudo pacman -S python3 python-uv
 
-    # uv auto completions
-    echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.local.sh
-    echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.local.sh
+    # for uv auto completions call f_eval_comp
 }
 
 install_node() {
