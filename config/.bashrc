@@ -25,7 +25,7 @@ alias reload="source ~/.bashrc"
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # fzf keybindings
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.sh ] && source ~/.fzf.sh
 
 # Common environment variables
 [ -f ~/.config/shell/envars.sh ] && source ~/.config/shell/envars.sh

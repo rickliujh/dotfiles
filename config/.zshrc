@@ -10,7 +10,7 @@ fi
 fpath=(/usr/share/zsh/vendor-completions $fpath)
 
 # fzf keybindings
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.sh ] && source ~/.fzf.sh
 
 # Common environment variables
 [ -f ~/.config/shell/envars.sh ] && source ~/.config/shell/envars.sh
