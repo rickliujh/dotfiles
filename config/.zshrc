@@ -12,9 +12,6 @@ fpath=(/usr/share/zsh/vendor-completions $fpath)
 # fzf keybindings
 [ -f ~/.fzf.sh ] && source ~/.fzf.sh
 
-# Common environment variables
-[ -f ~/.config/shell/envars.sh ] && source ~/.config/shell/envars.sh
-
 # Common functions
 [ -f ~/.config/shell/functions.sh ] && source ~/.config/shell/functions.sh
 
