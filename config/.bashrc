@@ -24,9 +24,6 @@ alias reload="source ~/.bashrc"
 # bash completions
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
-# fzf keybindings
-[ -f ~/.fzf.sh ] && source ~/.fzf.sh
-
 # Common environment variables
 [ -f ~/.config/shell/envars.sh ] && source ~/.config/shell/envars.sh
 
@@ -35,6 +32,9 @@ alias reload="source ~/.bashrc"
 
 # Common aliases
 [ -f ~/.config/shell/aliases.sh ] && source ~/.config/shell/aliases.sh
+
+# fzf keybindings
+[ -f ~/.fzf.sh ] && source ~/.fzf.sh
 
 # Tool confs for bash
 if type navi >/dev/null 2>&1; then eval "$(navi widget bash)"; fi
