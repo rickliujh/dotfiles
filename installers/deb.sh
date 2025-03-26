@@ -37,11 +37,17 @@ install_python3() {
 
 install_node() {
     # https://github.com/nodesource/distribution
-    version="setup_lts.x"
-    rm -rf $version
-    curl -fsSL "https://deb.nodesource.com/$version" | sudo -E bash - && sudo apt-get install -y nodejs
-    rm -rf $version
-    sudo corepack enable
+    version="22"
+    # Download and install fnm:
+    curl -o- https://fnm.vercel.app/install | bash
+    # Download and install Node.js:
+    fnm install $version
+    # Verify the Node.js version:
+    node -v # Should print "v22.14.0".
+    # Download and install Yarn:
+    corepack enable yarn
+    # Verify Yarn version:
+    yarn -v
 }
 
 install_dev_pkgs() {
