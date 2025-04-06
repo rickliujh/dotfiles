@@ -40,6 +40,8 @@
 	# Nuke the working tree: discard all changes in the working tree
 	nuke = checkout -- .
 	bb = !better-git-branch.sh
+	g = grep
+	rlog = reflog --date=format:'%a, %D %T'
 
 [branch]
 	sort = -committerdate
@@ -89,3 +91,7 @@
 
 [gpg]
 	format = ssh
+
+[grep]
+	lineNumber = true
+	patternType = perl
