@@ -74,7 +74,7 @@
 	output = compact
 
 [interactive]
-	diffFilter = delta --color-only --highlight-removed
+	diffFilter = delta --color-only
 
 [merge]
 	conflictstyle = zdiff3
