@@ -11,3 +11,6 @@ alias egrep='egrep --color=auto'
 
 # Editor
 alias vi='nvim'
+
+# KDE
+alias wkill='qdbus6 org.kde.KWin /KWin killWindow'
