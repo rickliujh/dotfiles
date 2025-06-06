@@ -12,7 +12,7 @@
 # 3. proper gitconfig for open-box usage
 #
 # BUILD:
-# docker build -f=Dockerfile.base -t=devbase:v0.1 --build-arg EMAIL={{YOUR_EMAIL}} --build-arg NAME={{YOUR_NAME}} --build-arg PASSWD={{YOUR_PASSWD}} .
+# docker build -f=Dockerfile.base -t=devbase:v0.1 --build-arg EMAIL={{YOUR_EMAIL}} --build-arg USER={{YOUR_NAME}} --build-arg PASSWD={{YOUR_PASSWD}} .
 #
 # RUN:
 # docker run -v $(echo ~)/workspace/{{YOUR-PROJECT}}:/root/workspace/{{YOUR-PROJECT}} -p 8654:22 --name {{IMAGE_NAME}} -d -it devbase:v0.1
