@@ -3,8 +3,9 @@ SHELL := /bin/bash
 
 include Vars.mk
 
-# ** Example Variables for Vars.mk **
+# ---- Example Variables for Vars.mk ----
 #
+# IMG_FILE = Dockerfile.base
 # BASE_IMAGE_NAME = basedev
 # VERSION_TAG = v0.1
 # EMAIL = example@outlook.com
@@ -13,9 +14,24 @@ include Vars.mk
 # DEV_CONTAINER_NAME = godev
 # PROJECT_PATH = 
 
+# ---- VARIABLES ----
+#
 LABEL = basename
 LABEL_BASE = self
 LABEL_DERIVATIVE = $(BASE_IMAGE_NAME)
+
+# ---- PARAMETERS ----
+#
+# docker build cache
+NOCACHE?=--no-cache
+# docker run mounting path
+PP ?= ${PROJECT_PATH}
+# docker run dev container name
+DN ?= ${DEV_CONTAINER_NAME}
+# ssh local port forward local port
+LP ?= 8080
+# ssh local port forward remote port
+RP ?= 8080
 
 all: help
 
@@ -36,22 +52,23 @@ stopall: ## Stop all dev containers
 	if [ -n "$$CONTAINERS_TO_STOP" ]; then docker stop $${CONTAINERS_TO_STOP}; fi
 
 .PHONY: rmall 
-rmall: ## DANGER! Remove all dev containers
+rmall: stopall ## DANGER! Remove all dev containers
 	@CONTAINERS_TO_REMOVE=$$(docker ps -a -q --filter "label=${LABEL}"); \
 	echo "Removing dev containers..."; \
 	if [ -n "$$CONTAINERS_TO_REMOVE" ]; then docker rm $${CONTAINERS_TO_REMOVE}; fi
 
 .PHONY: cleanall
-cleanall: stopall rmall ## DANGER! Clean all dev container images
+cleanall: rmall ## DANGER! Clean all dev container images
 	@docker images -q --filter "label=${LABEL}" | xargs -r docker rmi
 
 .PHONY: build
-build: ## Build base image to version
+build: ## Build base image to version. Variables: NOCACHE="" to use cache
 	@IMG=${BASE_IMAGE_NAME}:${VERSION_TAG}
-	@echo "Current image version tagged: $${IMG}"
+	echo "Current image version tagged: $${IMG}"
+	echo "Run with cache flag ${NOCACHE}"
 	# if image not exist then build
 	if [ -z "$$(docker images -q $${IMG} 2> /dev/null)" ]; then 
-		docker build --no-cache -f=Dockerfile.base -t=$${IMG} --build-arg EMAIL=${EMAIL} --build-arg "USER=${USER}" --build-arg "PASSWD=${PASSWD}" --label "${LABEL}=${LABEL_BASE}" .
+		docker build ${NOCACHE} -f=${IMG_FILE} -t=$${IMG} --build-arg EMAIL=${EMAIL} --build-arg "USER=${USER}" --build-arg "PASSWD=${PASSWD}" --label "${LABEL}=${LABEL_BASE}" .
 	else
 		@echo "Do nothing because image version tag $${IMG} exists"
 	fi
@@ -77,12 +94,12 @@ go: build ## Build golang image from the base to version
 .PHONY: exec
 exec:  ## Run container and tmux into it using ssh. Variables: PP (project path) DN (dev container name) IMG (image name)
 	@IMG=${BASE_IMAGE_NAME}:${VERSION_TAG}
-	PP=${PROJ_PATH}
-	DN=${DEV_CONTAINER_NAME}
 	CONTAINER=$$(docker ps -a --format "{{.ID}}" -f name=${DEV_CONTAINER_NAME})
 	if [ -z "$${CONTAINER}" ]; then
-		echo "Running $$IMG..."
-		docker run -v $$(echo ~)/workspace/$${PP}:/root/workspace/$${PP} -p 8654:22 --name $${DN} -d -it $${IMG}
+		echo "running $$IMG... "
+		echo "container name: ${DN};"
+		echo "project path: ${PP};"
+		docker run -v $$(echo ~)/workspace/$(PP):/root/workspace/$(PP) -p 8654:22 --name ${DN} -d -it $${IMG}
 	else
 		echo "Restarting $$IMG..."
 		docker restart $${CONTAINER}
@@ -90,10 +107,8 @@ exec:  ## Run container and tmux into it using ssh. Variables: PP (project path)
 
 .PHONY: port
 port:  ## Local port forward from dev container by SSH tunneling. Variables: LP (local port) RP (remote port)
-	@LP=8080
-	RP=8080
-	echo "SSH local port forward $${LP}->localhost:$${RP}"
-	ssh -L $${LP}:localhost:$${RP} root@localhost -p 8654
+	echo "SSH local port forward ${LP}->localhost:${RP}"
+	ssh -L ${LP}:localhost:${RP} root@localhost -p 8654
 	
 .PHONY: ls
 ls:  ## List all dev containers
