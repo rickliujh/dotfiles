@@ -1,0 +1,92 @@
+#===================================================================================# 
+#                  BASE IMAGE DOCKERFILE FOR REMOTE DEVELOPMENT                     #
+#===================================================================================#
+# NOTE:
+# For security reason, you should only use it in local environment and do not upload
+# to any public registery, bacause the PASSWD is exposed in the final image. Be aware
+# of the risk if doing so.
+#
+# INCLUDES:
+# 1. all non-language specific tools for development from dotfiles
+# 2. a SSH server with proper configuration for connecting remotely with tmux
+# 3. proper gitconfig for open-box usage
+#
+# BUILD:
+# docker build -f=Dockerfile.base -t=devbase:v0.1 --build-arg EMAIL={{YOUR_EMAIL}} --build-arg USER={{YOUR_NAME}} --build-arg PASSWD={{YOUR_PASSWD}} .
+#
+# RUN:
+# docker run -v $(echo ~)/workspace/{{YOUR-PROJECT}}:/root/workspace/{{YOUR-PROJECT}} -p 8654:22 --name {{IMAGE_NAME}} -d -it devbase:v0.1
+# ssh user@<hostname> -p 8654 -t "tmux new -s {{TMUX_SESSION}}" for the first time, and
+# ssh user@<hostname> -p 8654 -t "tmux a -t {{TMUX_SESSION}}"
+#
+# Docker in Docker:
+# docker build -f=Dockerfile.base -t=devbase:v0.1 --build-arg BASEIMAGE=cruizba/ubuntu-dind:latest --build-arg EMAIL={{YOUR_EMAIL}} --build-arg NAME={{YOUR_NAME}} --build-arg PASSWD={{YOUR_PASSWD}} .
+# unsafe way to run (not suggest):
+# docker run --privileged -v $(echo ~)/workspace/{{YOUR-PROJECT}}:/root/workspace/{{YOUR-PROJECT}} -p 8654:22 --name {{IMAGE_NAME}} -d -it devbase:v0.1
+# safe way with sysbox:
+# docker run --runtime=sysbox-runc -v $(echo ~)/workspace/{{YOUR-PROJECT}}:/root/workspace/{{YOUR-PROJECT}} -p 8654:22 --name {{IMAGE_NAME}} -d -it devbase:v0.1
+# see: https://github.com/nestybox/sysbox?tab=readme-ov-file#installing-sysbox
+# see: https://github.com/nestybox/sysbox/blob/master/docs/user-guide/dind.md
+# see: https://www.docker.com/resources/docker-in-docker-containerized-ci-workflows-dockercon-2023
+# see: https://github.com/cruizba/ubuntu-dind?tab=readme-ov-file#3-usage-guide
+# install sysbox: bash setup.sh install_sysbox
+
+
+# allow you to swap out base image to use Docker in Docker image
+ARG BASEIMAGE=archlinux:base
+# email for git
+ARG EMAIL=bob@example.com 
+# user name for git
+ARG USER=bob
+# password for ssh
+ARG PASSWD=root
+# timezone for system
+ARG TZ=Etc/UTC
+
+
+FROM ${BASEIMAGE}
+WORKDIR /root
+
+ARG PASSWD
+ARG EMAIL
+ARG TZ
+ENV TZ=$TZ
+ENV ID_LIKE=arch
+
+# Setting up envrionment
+RUN yes | pacman -Syu && \
+	yes | pacman -S git openssh && \
+	git clone https://github.com/rickliujh/dotfiles.git && \
+	cd ./dotfiles && \
+	bash setup.sh install_without_languages && \
+	bash setup.sh backup_configs && \
+	bash setup.sh setup_symlinks && \
+	bash setup.sh install_dev_pkgs && \
+	yes | pacman -Scc && \
+	~/.tmux/plugins/tpm/scripts/install_plugins.sh && \
+	echo "root:$PASSWD" | chpasswd && \
+	## generating new ssh key, it can, later, be added to your github setting
+	yes '' | ssh-keygen -t ed25519 -C $EMAIL && \
+	ssh-keygen -A && \
+	eval `ssh-agent -s` && \
+	ssh-add /root/.ssh/id_ed25519
+
+ARG USER	
+# Setup SSH config and gitconfig
+RUN sed -i'' -e's/^#PermitRootLogin prohibit-password$/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+        sed -i'' -e's/^#PasswordAuthentication yes$/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
+        sed -i'' -e's/^#PermitEmptyPasswords no$/PermitEmptyPasswords yes/' /etc/ssh/sshd_config && \
+        sed -i'' -e's/^UsePAM yes/UsePAM no/' /etc/ssh/sshd_config && \
+	# Setting up partial gitconfig that only contains user info
+	# rest of the gitconfig will be share from dotfiles repo
+	mkdir -p /root/workspace && \
+	echo "[user]\n \
+    name = $USER\n \
+    email = $EMAIL\n \
+    signingkey = ~/.ssh/id_ed25519.pub\n \
+" >> /root/workspace/.gitconfig-default 
+
+EXPOSE 22/tcp
+
+SHELL ["/usr/bin/zsh", "-c"]
+ENTRYPOINT /usr/sbin/sshd -D 
