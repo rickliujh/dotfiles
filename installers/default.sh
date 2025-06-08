@@ -63,6 +63,7 @@ EOF
     )"
 
         git clone https://github.com/Aloxaf/fzf-tab ${ZDOTDIR:-$HOME}/.zprezto/contrib/fzf-tab
+        git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ${ZDOTDIR:-$HOME}/.zprezto/contrib/fast-syntax-highlighting
         chsh -s /bin/zsh
     else
         log_blue "prezto detected, check for update..."   
