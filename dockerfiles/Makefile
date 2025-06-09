@@ -75,18 +75,18 @@ build: ## Build base image to version. Variables: NOCACHE="" to use cache
 
 .PHONY: node
 node: build ## Build node image from the base to version
-	IMG=${BASE_IMAGE_NAME}-node:${VERSION_TAG}
+	IMG=${BASE_IMAGE_NAME}:${VERSION_TAG}
 	if [ -z "$$(docker images -q $${IMG} 2> /dev/null)" ]; then
-		docker build -f=Dockerfile.node -t=$${IMG} --build-arg BASEIMAGE=$${IMG} --label ${LABEL}=${LABEL_DERIVATIVE} .
+		docker build -f=Dockerfile.node -t=${BASE_IMAGE_NAME}-node:${VERSION_TAG} --build-arg BASEIMAGE=$${IMG} --label ${LABEL}=${LABEL_DERIVATIVE} .
 	else
 		@echo "Do nothing because image version tag $${IMG} exists"
 	fi
 
 .PHONY: go
 go: build ## Build golang image from the base to version
-	IMG=${BASE_IMAGE_NAME}-golang:${VERSION_TAG}
+	IMG=${BASE_IMAGE_NAME}:${VERSION_TAG}
 	if [ -z "$(docker images -q $${IMG} 2> /dev/null)" ]; then
-		docker build -f=Dockerfile.golang -t=$${IMG} --build-arg BASEIMAGE=$${IMG} --label ${LABEL}=${LABEL_DERIVATIVE} .
+		docker build -f=Dockerfile.golang -t=${BASE_IMAGE_NAME}-golang:${VERSION_TAG} --build-arg BASEIMAGE=$${IMG} --label ${LABEL}=${LABEL_DERIVATIVE} .
 	else
 		@echo "Do nothing because image version tag $${IMG} exists"
 	fi

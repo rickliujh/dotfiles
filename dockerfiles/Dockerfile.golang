@@ -1,0 +1,12 @@
+# allow you to swap out base image to use Docker in Docker image
+ARG BASEIMAGE=basedev:latest
+
+FROM ${BASEIMAGE}
+WORKDIR /root
+
+# Install language
+RUN cd ./dotfiles && \
+    bash setup.sh install_go
+   
+# Install go specific packages
+RUN go install github.com/spf13/cobra-cli@latest
