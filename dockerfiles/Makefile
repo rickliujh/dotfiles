@@ -23,7 +23,7 @@ LABEL_DERIVATIVE = $(BASE_IMAGE_NAME)
 # ---- PARAMETERS ----
 #
 # docker build cache
-NOCACHE?=--no-cache
+NOCACHE ?= --no-cache
 # docker run mounting path
 PP ?= ${PROJECT_PATH}
 # docker run dev container name
@@ -32,6 +32,8 @@ DN ?= ${DEV_CONTAINER_NAME}
 LP ?= 8080
 # ssh local port forward remote port
 RP ?= 8080
+# name of image for dev container
+DEVIMG ?= ${BASE_IMAGE_NAME}:${VERSION_TAG}
 
 all: help
 
@@ -93,7 +95,7 @@ go: build ## Build golang image from the base to version
 
 .PHONY: exec
 exec:  ## Run container and tmux into it using ssh. Variables: PP (project path) DN (dev container name) IMG (image name)
-	@IMG=${BASE_IMAGE_NAME}:${VERSION_TAG}
+	@IMG=${DEVIMG}
 	CONTAINER=$$(docker ps -a --format "{{.ID}}" -f name=${DEV_CONTAINER_NAME})
 	if [ -z "$${CONTAINER}" ]; then
 		echo "running $$IMG... "
