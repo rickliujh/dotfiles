@@ -35,10 +35,10 @@ RUN yes | pacman -Syu && \
 	yes '' | ssh-keygen -t ed25519 -C $EMAIL && \
 	ssh-keygen -A
 
-RUN echo $'host github.com\n \
-  \thostname github.com\n \
-  \tuser git\n \
-  \tidentityfile ~/.ssh/id_ed25519\n \
+RUN echo $'host github.com\n\
+  \thostname github.com\n\
+  \tuser git\n\
+  \tidentityfile ~/.ssh/id_ed25519\n\
 ' > /root/.ssh/config 
 
 ARG USER	
@@ -49,12 +49,13 @@ RUN sed -i'' -e's/^#PermitRootLogin prohibit-password$/PermitRootLogin yes/' /et
         sed -i'' -e's/^UsePAM yes/UsePAM no/' /etc/ssh/sshd_config && \
 	# Setting up partial gitconfig that only contains user info
 	# rest of the gitconfig will be share from dotfiles repo
-	mkdir -p /root/workspace && \
-	echo $'[user]\n \
-	    name = $USER\n \
-	    email = $EMAIL\n \
-	    signingkey = ~/.ssh/id_ed25519.pub\n \
-	' >> /root/workspace/.gitconfig-default 
+	mkdir -p /root/workspace
+
+RUN echo -e "[user]\n\
+    name = ${USER}\n\
+    email = ${EMAIL}\n\
+    signingkey = ~/.ssh/id_ed25519.pub\n\
+" >> /root/workspace/.gitconfig-default 
 
 EXPOSE 22/tcp
 
