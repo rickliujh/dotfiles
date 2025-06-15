@@ -39,9 +39,9 @@ Linux and desktop configuration and setup scripts.
 6. `bash setup.sh {{func_name}}` you can actually call any function that declared in shell file in root folder by putting its name after setup.sh separated by space as long as you know what you're doing.
 
 ## Next...
-1. ~~understanding fzf and its config ~~
+1. ~~understanding fzf and its config~~
 2. ~~understanding bashrc~~
-3. ~~understanding zshrc with oh-my-zsh ~~
+3. ~~understanding zshrc with oh-my-zsh~~
 4. ~~setting up tmux~~
 5. ~~understanding eza and its config and how to integrating with zsh(require 3)~~
 6. ~~ssh port forward script for remote development~~
