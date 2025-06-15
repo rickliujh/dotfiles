@@ -21,7 +21,7 @@ ENV ID_LIKE=arch
 
 # Setting up envrionment
 RUN yes | pacman -Syu && \
-	yes | pacman -S git openssh && \
+	yes | pacman -S git openssh less && \
 	git clone https://github.com/rickliujh/dotfiles.git && \
 	cd ./dotfiles && \
 	bash setup.sh install_without_languages && \
