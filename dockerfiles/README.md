@@ -53,7 +53,14 @@ docker run --runtime=sysbox-runc -v $(echo ~)/workspace/{{YOUR-PROJECT}}:/root/w
 bash setup.sh install_sysbox
 ```
 
-### Resources:
+## SSH port forwarding
+```
+# local port forwarding
+ssh -L [local-port]:[remote-host]:[remote-port] root@localhost -p 8654
+```
+See: [A Visual Guide to SSH Tunnels: Local and Remote Port Forwarding](https://iximiuz.com/en/posts/ssh-tunnels/)
+
+## Resources:
 - https://github.com/nestybox/sysbox?tab=readme-ov-file#installing-sysbox
 - https://github.com/nestybox/sysbox/blob/master/docs/user-guide/dind.md
 - https://www.docker.com/resources/docker-in-docker-containerized-ci-workflows-dockercon-2023
