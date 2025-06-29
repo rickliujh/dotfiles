@@ -37,11 +37,11 @@ return {
     end
     return {
       -- Basic debugging keymaps, feel free to change to your liking!
-      { '<leader>dc', dap.continue, desc = 'Debug: Start/Continue' },
-      { '<leader>di', dap.step_into, desc = 'Debug: Step Into' },
-      { '<leader>do', dap.step_over, desc = 'Debug: Step Over' },
-      { '<leader>dt', dap.step_out, desc = 'Debug: Step Out' },
-      { '<leader>db', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
+      { '<leader>dc', dap.continue, desc = 'Start/Continue' },
+      { '<leader>di', dap.step_into, desc = 'Step Into' },
+      { '<leader>do', dap.step_over, desc = 'Step Over' },
+      { '<leader>dt', dap.step_out, desc = 'Step Out' },
+      { '<leader>db', dap.toggle_breakpoint, desc = 'Toggle Breakpoint' },
       {
         '<leader>dx',
         function()
@@ -50,7 +50,7 @@ return {
         desc = 'Debug: Set Condition Breakpoint',
       },
       -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-      { '<leader>du', dapui.toggle, desc = 'Debug: See last session result.' },
+      { '<leader>du', dapui.toggle, desc = 'See last session result.' },
       {
         '<leader>de',
         function()
@@ -59,7 +59,7 @@ return {
           end
           dapui.eval(nil, { enter = true })
         end,
-        desc = 'Debug: eval variable',
+        desc = 'Eval variable',
       },
       {
         '<leader>df',
@@ -69,7 +69,7 @@ return {
           end
           dapui.float_element(nil, { enter = true })
         end,
-        desc = 'Debug: open a debugger component',
+        desc = 'Open a debugger component',
       },
       -- { '<leader>k', dapui.eval, desc = 'Debug: eval variable' },
       unpack(keys),
