@@ -27,49 +27,72 @@ return {
   keys = function(_, keys)
     local dap = require 'dap'
     local dapui = require 'dapui'
-    local util = require("dapui.util")
+    local util = require 'dapui.util'
     local function is_active()
       local b = not not dap.session()
-      if not b then util.notify("No active debug session", vim.log.levels.WARN) end
+      if not b then
+        util.notify('No active debug session', vim.log.levels.WARN)
+      end
       return b
     end
     return {
       -- Basic debugging keymaps, feel free to change to your liking!
-      { '<F5>',      dap.continue,          desc = 'Debug: Start/Continue' },
-      { '<F1>',      dap.step_into,         desc = 'Debug: Step Into' },
-      { '<F2>',      dap.step_over,         desc = 'Debug: Step Over' },
-      { '<F3>',      dap.step_out,          desc = 'Debug: Step Out' },
-      { '<leader>b', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
+      { '<leader>dc', dap.continue, desc = 'Debug: Start/Continue' },
+      { '<leader>di', dap.step_into, desc = 'Debug: Step Into' },
+      { '<leader>do', dap.step_over, desc = 'Debug: Step Over' },
+      { '<leader>dt', dap.step_out, desc = 'Debug: Step Out' },
+      { '<leader>db', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
       {
-        '<leader>B',
+        '<leader>dx',
         function()
           dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
         end,
-        desc = 'Debug: Set Breakpoint',
+        desc = 'Debug: Set Condition Breakpoint',
       },
       -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-      { '<F7>', dapui.toggle, desc = 'Debug: See last session result.' },
+      { 'ds', dapui.toggle, desc = 'Debug: See last session result.' },
       {
-        '<leader>k',
+        '<leader>de',
         function()
-          if not is_active() then return end
+          if not is_active() then
+            return
+          end
           dapui.eval(nil, { enter = true })
         end,
-        desc = 'Debug: eval variable'
+        desc = 'Debug: eval variable',
       },
       {
-        '<leader>o',
+        '<leader>dp',
         function()
-          if not is_active() then return end
+          if not is_active() then
+            return
+          end
           dapui.float_element(nil, { enter = true })
         end,
-        desc = 'Debug: open a debugger component'
+        desc = 'Debug: open a debugger component',
       },
       -- { '<leader>k', dapui.eval, desc = 'Debug: eval variable' },
       unpack(keys),
     }
   end,
   config = function()
+    -- coloring breakpoints
+    vim.api.nvim_create_autocmd('ColorScheme', {
+      pattern = '*',
+      desc = 'prevent colorscheme clears self-defined DAP icon colors.',
+      callback = function()
+        vim.api.nvim_set_hl(0, 'DapBreakPointRed', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
+        vim.api.nvim_set_hl(0, 'DapBreakPointBlue', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
+        vim.api.nvim_set_hl(0, 'DapBreakPointGreen', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
+      end,
+    })
+
+    vim.fn.sign_define('DapBreakpoint', { text = '󰄯', texthl = 'DapBreakPointRed', linehl = '', numhl = 'DapBreakPointRed' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '󰟃', texthl = 'DapBreakPointRed', linehl = '', numhl = 'DapBreakPointRed' })
+    vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapBreakPointBlue', linehl = '', numhl = 'DapBreakPointBlue' })
+    vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapBreakPointGreen', linehl = '', numhl = 'DapBreakPointGreen' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = '', linehl = '', numhl = '' })
+
     local dap = require 'dap'
     local dapui = require 'dapui'
 
