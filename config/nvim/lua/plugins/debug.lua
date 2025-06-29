@@ -84,15 +84,19 @@ return {
   end,
   config = function()
     -- coloring breakpoints
+    local function set_dap_color()
+      vim.api.nvim_set_hl(0, 'DapBreakPointRed', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
+      vim.api.nvim_set_hl(0, 'DapBreakPointBlue', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
+      vim.api.nvim_set_hl(0, 'DapBreakPointGreen', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
+    end
+    vim.api.nvim_create_augroup('DapCustomColors', { clear = true })
     vim.api.nvim_create_autocmd('ColorScheme', {
       pattern = '*',
+      group = 'DapCustomColors',
       desc = 'prevent colorscheme clears self-defined DAP icon colors.',
-      callback = function()
-        vim.api.nvim_set_hl(0, 'DapBreakPointRed', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
-        vim.api.nvim_set_hl(0, 'DapBreakPointBlue', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
-        vim.api.nvim_set_hl(0, 'DapBreakPointGreen', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
-      end,
+      callback = set_dap_color,
     })
+    set_dap_color()
 
     vim.fn.sign_define('DapBreakpoint', { text = '󰄯', texthl = 'DapBreakPointRed', linehl = '', numhl = 'DapBreakPointRed' })
     vim.fn.sign_define('DapBreakpointCondition', { text = '󰟃', texthl = 'DapBreakPointRed', linehl = '', numhl = 'DapBreakPointRed' })
