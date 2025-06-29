@@ -50,7 +50,7 @@ return {
         desc = 'Debug: Set Condition Breakpoint',
       },
       -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-      { 'ds', dapui.toggle, desc = 'Debug: See last session result.' },
+      { '<leader>du', dapui.toggle, desc = 'Debug: See last session result.' },
       {
         '<leader>de',
         function()
@@ -62,7 +62,7 @@ return {
         desc = 'Debug: eval variable',
       },
       {
-        '<leader>dp',
+        '<leader>df',
         function()
           if not is_active() then
             return
