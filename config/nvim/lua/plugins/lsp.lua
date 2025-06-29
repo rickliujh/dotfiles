@@ -12,7 +12,7 @@ return {
     },
   },
 
-  { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+  { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
 
   {
     -- LSP Configuration & Plugins
@@ -26,7 +26,7 @@ return {
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -111,7 +111,7 @@ return {
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          nmap('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earh [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
@@ -121,7 +121,6 @@ return {
           nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
           nmap('<M-K>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -130,7 +129,6 @@ return {
           nmap('<leader>wl', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           end, '[W]orkspace [L]ist Folders')
-
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -170,7 +168,7 @@ return {
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
-        end
+        end,
       })
 
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -225,11 +223,11 @@ return {
       --    :Mason
       --
       --  You can press `g?` for help in this menu.
-      require('mason').setup({
+      require('mason').setup {
         ui = {
-          border = "rounded"
-        }
-      })
+          border = 'rounded',
+        },
+      }
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -251,6 +249,6 @@ return {
           end,
         },
       }
-    end
-  }
+    end,
+  },
 }
