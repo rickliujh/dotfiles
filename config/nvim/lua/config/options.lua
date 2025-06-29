@@ -75,4 +75,5 @@ vim.diagnostic.config {
     border = 'rounded',
     focusable = true,
   },
+  jump = { float = true },
 }
