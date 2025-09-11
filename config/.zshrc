@@ -10,13 +10,13 @@ fi
 fpath=(/usr/share/zsh/vendor-completions $fpath)
 
 # fzf keybindings
-[ -f ~/.fzf.sh ] && source ~/.fzf.sh
+[[ -f ~/.fzf.sh ]] && source ~/.fzf.sh
 
 # Common functions
-[ -f ~/.config/shell/functions.sh ] && source ~/.config/shell/functions.sh
+[[ -f ~/.config/shell/functions.sh ]] && source ~/.config/shell/functions.sh
 
 # Common aliases
-[ -f ~/.config/shell/aliases.sh ] && source ~/.config/shell/aliases.sh
+[[ -f ~/.config/shell/aliases.sh ]] && source ~/.config/shell/aliases.sh
 
 # Local configurations
-[ -f ~/.local.sh ] && source ~/.local.sh
+[[ -f ~/.local.sh ]] && source ~/.local.sh
