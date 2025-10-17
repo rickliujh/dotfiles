@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # -e: exit on error
 # -u: exit on unset variables
@@ -8,22 +8,29 @@ readonly CURR_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 source $CURR_DIR/../helper.sh
 source $CURR_DIR/./default.sh
-source /etc/os-release
 
-case $ID_LIKE in
-  debian) 
-    log_blue "Detected Debian Base System"
-    source $CURR_DIR/./deb.sh
-    ;;
-  arch) 
-    log_blue "Detected Arch Base System"
-    source $CURR_DIR/./arch.sh
-    ;;
-  *) 
-    log_error "Operation aborted: Unknown distribution"
-    exit 1
-    ;;
-esac
+if [[ "$(uname)" == "Linux" ]]; then
+  source /etc/os-release
+  case $ID_LIKE in
+    debian)
+      log_blue "Detected Debian Base System"
+      source $CURR_DIR/./deb.sh
+      ;;
+    arch)
+      log_blue "Detected Arch Base System"
+      source $CURR_DIR/./arch.sh
+      ;;
+    *)
+      log_error "Operation aborted: Unsupported Linux distribution"
+      exit 1
+      ;;
+  esac
+elif [[ "$(uname)" == "Darwin" ]]; then
+  log_blue "Detected MacOS"
+  source $CURR_DIR/./mac.sh
+else
+  log_error "Operation aborted: Unknown system"
+fi
 
 install_extras() {
     log_task "Installing extra package..."
