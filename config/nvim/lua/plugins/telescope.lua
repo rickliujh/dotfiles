@@ -1,4 +1,27 @@
 -- Fuzzy Finder (files, lsp, etc)
+
+-- UNCOMMENT BELOW TO USE FILE NAME FIRST PATH DISPLAY
+-- See: https://github.com/nvim-telescope/telescope.nvim/issues/2014#issuecomment-1873229658
+--
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'TelescopeResults',
+--   callback = function(ctx)
+--     vim.api.nvim_buf_call(ctx.buf, function()
+--       vim.fn.matchadd('TelescopeParent', '\t\t.*$')
+--       vim.api.nvim_set_hl(0, 'TelescopeParent', { link = 'Comment' })
+--     end)
+--   end,
+-- })
+--
+-- local function filenameFirst(_, path)
+--   local tail = vim.fs.basename(path)
+--   local parent = vim.fs.dirname(path)
+--   if parent == '.' then
+--     return tail
+--   end
+--   return string.format('%s\t\t%s', tail, parent)
+-- end
+
 return {
   'nvim-telescope/telescope.nvim',
 
@@ -24,6 +47,16 @@ return {
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
       defaults = {
+        layout_strategy = 'vertical',
+        layout_config = {
+          vertical = {
+            width = 0.95,
+          },
+          horizontal = {
+            width = 0.90,
+          },
+        },
+        path_display = { 'truncate' },
         mappings = {
           i = {
             ['<C-u>'] = false,
@@ -34,6 +67,7 @@ return {
       pickers = {
         find_files = {
           hidden = true,
+          -- path_display = filenameFirst,
         },
         buffers = {
           mappings = {
