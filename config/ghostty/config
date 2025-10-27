@@ -1,0 +1,18 @@
+font-family=Iosevka Nerd Font Mono
+font-size=16
+background-opacity=0.9
+# background-opacity-cells=true
+background-blur=90
+
+window-vsync=true
+window-height=30
+window-width=100
+
+macos-option-as-alt=true
+
+# custom-shader=shaders/cursor_smear.glsl
+# custom-shader=shaders/cursor_blaze_tapered.glsl
+custom-shader=shaders/cursor_smear_fade.glsl
+
+
+
