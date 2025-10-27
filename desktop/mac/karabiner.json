@@ -938,6 +938,7 @@
                                             "^com\\.parallels\\.winapp\\.",
                                             "^tv\\.parsec\\.www$",
                                             "^org\\.macports\\.X11$",
+                                            "^md\\.obsidian$",
                                             "^com\\.apple\\.Terminal$",
                                             "^com\\.googlecode\\.iterm2$",
                                             "^co\\.zeit\\.hyperterm$",
