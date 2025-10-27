@@ -25,7 +25,7 @@
 return {
   'nvim-telescope/telescope.nvim',
 
-  branch = '0.1.x',
+  branch = 'master',
 
   dependencie = {
     'nvim-lua/plenary.nvim',
@@ -45,6 +45,7 @@ return {
 
   config = function()
     -- See `:help telescope` and `:help telescope.setup()`
+    local actions = require 'telescope.actions'
     require('telescope').setup {
       defaults = {
         layout_strategy = 'vertical',
@@ -60,8 +61,12 @@ return {
         path_display = { 'truncate' },
         mappings = {
           i = {
-            ['<C-u>'] = false,
-            ['<C-d>'] = false,
+            ['<C-u>'] = actions.preview_scrolling_up,
+            ['<C-d>'] = actions.preview_scrolling_down,
+            ['<C-f>'] = actions.preview_scrolling_left,
+            ['<C-b>'] = actions.preview_scrolling_right,
+            ['<M-f>'] = actions.results_scrolling_left,
+            ['<M-b>'] = actions.results_scrolling_right,
           },
         },
       },
