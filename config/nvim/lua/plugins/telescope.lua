@@ -66,6 +66,9 @@ return {
       },
       pickers = {
         find_files = {
+          layout_config = {
+            prompt_position = 'top',
+          },
           hidden = true,
           -- path_display = filenameFirst,
         },
