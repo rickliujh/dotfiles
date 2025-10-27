@@ -49,6 +49,7 @@ return {
       defaults = {
         layout_strategy = 'vertical',
         layout_config = {
+          prompt_position = 'top',
           vertical = {
             width = 0.95,
           },
@@ -66,11 +67,12 @@ return {
       },
       pickers = {
         find_files = {
-          layout_config = {
-            prompt_position = 'top',
-          },
           hidden = true,
+          path_display = { 'truncate' },
           -- path_display = filenameFirst,
+        },
+        lsp_references = {
+          show_line = false,
         },
         buffers = {
           mappings = {
