@@ -79,6 +79,11 @@ return {
         lsp_references = {
           show_line = false,
         },
+        lsp_document_symbols = {
+          fname_width = 40,
+          symbol_width = 50,
+          show_line = false,
+        },
         buffers = {
           mappings = {
             n = {
