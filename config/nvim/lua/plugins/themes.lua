@@ -26,11 +26,11 @@ return {
         sections = {
           lualine_x = {
             {
-              noice.api.statusline.mode.get,
+              noice.api.status.mode.get,
               cond = function()
-                local mode_text = noice.api.statusline.mode.get()
+                local mode_text = noice.api.status.mode.get()
                 -- only returns true when mode is enabled and it's macro recording
-                return noice.api.statusline.mode.has() and string.find(mode_text, 'recording', 1, true) ~= nil
+                return noice.api.status.mode.has() and string.find(mode_text, 'recording', 1, true) ~= nil
               end,
               color = { fg = '#ff9e64' },
             },
