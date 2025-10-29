@@ -111,8 +111,9 @@ return {
     opts = {
       transparent = true,
       colors = {
-        visual = '#013d4f',
-        search = '#1a98b8',
+        visual = '#4e5e5e',
+        search = '#139cc2',
+        comment = '#70708c',
       },
     },
     config = function(_, opts)
