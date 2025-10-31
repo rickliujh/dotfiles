@@ -3,7 +3,7 @@
 
 source <(fzf --zsh)
 
-export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude .git . $HOME"
 export FZF_DEFAULT_OPTS="
     --layout=reverse 
     --inline-info"
@@ -15,7 +15,7 @@ export FZF_CTRL_T_OPTS="
   --bind 'ctrl-\:change-preview-window(down|hidden|)'
   --header 'Press CTRL-\ to change preview window'"
 
-export FZF_ALT_C_COMMAND="fd -t d . $HOME"
+export FZF_ALT_C_COMMAND="fd -t d --hidden --follow --exclude .git . $HOME"
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
