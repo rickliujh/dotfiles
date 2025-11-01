@@ -4,16 +4,20 @@
     "actions": 
     [
         {
-            "command": "paste",
-            "id": "User.paste"
-        },
-        {
             "command": 
             {
                 "action": "adjustFontSize",
                 "delta": -1
             },
             "id": "User.adjustFontSize.E2698FAA"
+        },
+        {
+            "command": "paste",
+            "id": "User.paste"
+        },
+        {
+            "command": "openNewTabDropdown",
+            "id": "User.openNewTabDropdown"
         },
         {
             "command": 
@@ -24,18 +28,6 @@
             "id": "User.adjustFontSize.E04D5229"
         },
         {
-            "command": "openNewTabDropdown",
-            "id": "User.openNewTabDropdown"
-        },
-        {
-            "command": "toggleFullscreen",
-            "id": "User.toggleFullscreen"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
-        },
-        {
             "command": 
             {
                 "action": "splitPane",
@@ -43,6 +35,14 @@
                 "splitMode": "duplicate"
             },
             "id": "User.splitPane.A6751878"
+        },
+        {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
+            "command": "toggleFullscreen",
+            "id": "User.toggleFullscreen"
         },
         {
             "command": 
@@ -74,24 +74,24 @@
             "keys": "ctrl+alt+shift+space"
         },
         {
-            "id": null,
-            "keys": "ctrl+plus"
+            "id": "User.splitPane.A6751878",
+            "keys": "alt+shift+d"
         },
         {
             "id": null,
             "keys": "ctrl+minus"
         },
         {
-            "id": "User.splitPane.A6751878",
-            "keys": "alt+shift+d"
-        },
-        {
             "id": null,
-            "keys": "ctrl+v"
+            "keys": "ctrl+plus"
         },
         {
             "id": "User.find",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+v"
         },
         {
             "id": null,
@@ -114,6 +114,22 @@
     [
         {
             "type": "remainingProfiles"
+        },
+        {
+            "allowEmpty": false,
+            "entries": 
+            [
+                {
+                    "commandline": null,
+                    "name": null,
+                    "source": "Windows.Terminal.SSH",
+                    "type": "matchProfiles"
+                }
+            ],
+            "icon": "\ue969",
+            "inline": "auto",
+            "name": "SSH",
+            "type": "folder"
         }
     ],
     "profiles": 
@@ -141,23 +157,29 @@
             },
             {
                 "antialiasingMode": "grayscale",
-                "colorScheme": "rose-pine-low-contrast",
+                "colorScheme": "One Half Dark",
                 "cursorShape": "filledBox",
                 "font": 
                 {
                     "builtinGlyphs": true,
-                    "face": "Iosevka Nerd Font Mono",
-                    "size": 14
+                    "face": "JetBrainsMono Nerd Font",
+                    "size": 13
                 },
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "historySize": 9001,
                 "name": "Ubuntu",
-                "opacity": 89,
+                "opacity": 93,
                 "padding": "2",
                 "scrollbarState": "hidden",
                 "source": "Windows.Terminal.Wsl",
                 "useAcrylic": true
+            },
+            {
+                "guid": "{98335d9d-c4be-58b3-bf11-5d483df60885}",
+                "hidden": false,
+                "name": "SSH - remote-dev-aws",
+                "source": "Windows.Terminal.SSH"
             }
         ]
     },
@@ -260,7 +282,7 @@
     ],
     "snapToGridOnResize": true,
     "tabWidthMode": "titleLength",
-    "theme": "rose-pine-low-contrast",
+    "theme": "system",
     "themes": 
     [
         {
