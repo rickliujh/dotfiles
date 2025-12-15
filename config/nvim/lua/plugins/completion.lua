@@ -45,31 +45,31 @@ return {
     luasnip.config.setup {}
 
     local kind_icons = {
-      Text = "",
-      Method = "󰆧",
-      Function = "󰊕",
-      Constructor = "",
-      Field = "",
-      Variable = "",
-      Class = "",
-      Interface = "",
-      Module = "󰕳",
-      Property = "",
-      Unit = "",
-      Value = "󰎠",
-      Enum = "",
-      Keyword = "󰌋",
-      Snippet = "",
-      Color = "󰏘",
-      File = "󰈙",
-      Reference = "",
-      Folder = "󰉋",
-      EnumMember = "",
-      Constant = "",
-      Struct = "",
-      Event = "",
-      Operator = "󰆕",
-      TypeParameter = "",
+      Text = '',
+      Method = '󰆧',
+      Function = '󰊕',
+      Constructor = '',
+      Field = '',
+      Variable = '',
+      Class = '',
+      Interface = '',
+      Module = '󰕳',
+      Property = '',
+      Unit = '',
+      Value = '󰎠',
+      Enum = '',
+      Keyword = '󰌋',
+      Snippet = '',
+      Color = '󰏘',
+      File = '󰈙',
+      Reference = '',
+      Folder = '󰉋',
+      EnumMember = '',
+      Constant = '',
+      Struct = '',
+      Event = '',
+      Operator = '󰆕',
+      TypeParameter = '',
     }
     cmp.setup {
       -- popup border
@@ -91,16 +91,16 @@ return {
           vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
           -- Source
           vim_item.menu = ({
-            buffer = "[BUF]",
-            nvim_lsp = "[LSP]",
-            luasnip = "[LIP]",
-            nvim_lua = "[LUA]",
-            latex_symbols = "[LAT]",
-            lazydev = "[LZD]",
-            path = "[PAH]",
+            buffer = '[BUF]',
+            nvim_lsp = '[LSP]',
+            luasnip = '[LIP]',
+            nvim_lua = '[LUA]',
+            latex_symbols = '[LAT]',
+            lazydev = '[LZD]',
+            path = '[PAH]',
           })[entry.source.name]
           return vim_item
-        end
+        end,
       },
 
       snippet = {
@@ -179,11 +179,11 @@ return {
     }
 
     -- cmdline setup
-    local mapping = cmp.mapping.preset.cmdline({
+    local mapping = cmp.mapping.preset.cmdline {
       ['<CR>'] = {
-        c = cmp.mapping.confirm({ select = false }),
+        c = cmp.mapping.confirm { select = true },
       },
-    })
+    }
 
     local bufcfg = {
       name = 'buffer',
@@ -197,16 +197,16 @@ return {
             bufs[vim.api.nvim_win_get_buf(win)] = true
           end
           return vim.tbl_keys(bufs)
-        end
+        end,
       },
     }
 
-    cmp.setup.cmdline({ "/", "?" }, {
+    cmp.setup.cmdline({ '/', '?' }, {
       completion = { autocomplete = false },
       mapping = mapping,
       sources = {
         bufcfg,
-      }
+      },
     })
 
     -- Use cmdline & path source for ':'.
@@ -219,5 +219,5 @@ return {
         bufcfg,
       },
     })
-  end
+  end,
 }
