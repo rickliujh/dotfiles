@@ -106,6 +106,12 @@
 [merge]
 	conflictstyle = zdiff3
 	log = true
+	tool = diffview
+
+[mergetool "diffview"]
+	cmd = nvim -n -c "DiffviewOpen" "$MERGED"
+	prompt = false
+	trustExitCode = false
 
 [push]
 	autoSetupRemote = true
