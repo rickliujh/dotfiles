@@ -65,10 +65,17 @@ return {
 
       'nvim-telescope/telescope.nvim', -- optional
     },
-    cmd = 'G',
+    cmd = 'Neogit',
     keys = {
       { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Show Neogit UI' },
     },
+    init = function(neogit)
+      vim.api.nvim_create_user_command(
+        'G', -- The new command name (must start with an uppercase letter)
+        ':Neogit <args>', -- The command it runs
+        { nargs = '*', bang = true } -- Allows the use of ! with the command (e.g., :Ng!)
+      )
+    end,
   },
 
   {
