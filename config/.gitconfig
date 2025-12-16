@@ -42,6 +42,31 @@
 	bb = !better-git-branch.sh
 	g = grep
 	rlog = reflog --date=format:'%a, %D %T'
+	browse = "!f() { \
+	  file=$(git rev-parse --show-prefix)$1; \
+	  branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse HEAD); \
+	  remote=$(git config --get remote.origin.url); \
+	  url=$(echo \"$remote\" | sed -E \
+	    -e 's#git@([^:]+):#https://\\1/#' \
+	    -e 's#ssh://git@([^/]+)/#https://\\1/#' \
+	    -e 's#\\.git$##'); \
+	  if echo \"$url\" | grep -qi gitlab; then \
+	    path=\"/-/blob/$branch/$file\"; \
+	  else \
+	    path=\"/blob/$branch/$file\"; \
+	  fi; \
+	  full=\"$url$path\"; \
+	  if command -v xdg-open >/dev/null; then \
+	    xdg-open \"$full\"; \
+	  elif command -v open >/dev/null; then \
+	    open \"$full\"; \
+	  elif command -v powershell.exe >/dev/null; then \
+	    powershell.exe Start-Process \"$full\"; \
+	  else \
+	    echo \"$full\"; \
+	  fi; \
+	}; f"
+	b = browse
 
 [branch]
 	sort = -committerdate

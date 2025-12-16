@@ -62,3 +62,6 @@ vim.keymap.set('n', '<leader>mir', '<cmd>CellularAutomaton make_it_rain<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- git open current file in browser
+vim.keymap.set('n', '<leader>gb', ':!git browse %<CR>', { desc = 'Open current git file in browser' })
