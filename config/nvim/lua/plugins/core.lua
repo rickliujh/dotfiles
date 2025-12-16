@@ -57,13 +57,37 @@ return {
   },
 
   {
+    'sindrets/diffview.nvim',
+    lazy = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    -- init = function()
+    --   vim.keymap.set('n', '<leader>gd', ':DiffviewOpen<CR>', { desc = 'Start a 4-way merge diff view' })
+    -- end,
+    cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
+    keys = {
+      { '<leader>gd', ':DiffviewOpen<CR>', desc = 'Start a 4-way merge diff view' },
+    },
+    opts = {
+      view = {
+        -- Config for conflicted files in diff views during a merge or rebase.
+        merge_tool = {
+          layout = 'diff4_mixed',
+          disable_diagnostics = true, -- Temporarily disable diagnostics for diff buffers while in the view.
+          winbar_info = true, -- See |diffview-config-view.x.winbar_info|
+        },
+      },
+    },
+  },
+
+  {
     'NeogitOrg/neogit',
     lazy = true,
     dependencies = {
-      'nvim-lua/plenary.nvim', -- required
-      'sindrets/diffview.nvim', -- optional - Diff integration
-
-      'nvim-telescope/telescope.nvim', -- optional
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+      'nvim-telescope/telescope.nvim',
     },
     cmd = 'Neogit',
     keys = {

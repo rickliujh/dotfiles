@@ -24,7 +24,7 @@ return {
     wk.setup(opts)
     wk.add {
       -- document existing key chains group
-      { '<leader>1', group = 'More git' },
+      { '<leader>1', group = 'MISC' },
       { '<leader>1_', hidden = true },
       { '<leader>c', group = '[C]ode' },
       { '<leader>c_', hidden = true },
