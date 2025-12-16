@@ -1,11 +1,11 @@
 return {
   -- Git related plugins
-  {
-    'tpope/vim-fugitive',
-    config = function()
-      vim.api.nvim_create_user_command('Glg', ":G log --graph --pretty=format:'%h -%d %s (%cr) <%an>' --abbrev-commit <args>", { nargs = '*', desc = '' })
-    end,
-  },
+  -- {
+  --   'tpope/vim-fugitive',
+  --   config = function()
+  --     vim.api.nvim_create_user_command('Glg', ":G log --graph --pretty=format:'%h -%d %s (%cr) <%an>' --abbrev-commit <args>", { nargs = '*', desc = '' })
+  --   end,
+  -- },
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
@@ -53,6 +53,21 @@ return {
           return '<Ignore>'
         end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
       end,
+    },
+  },
+
+  {
+    'NeogitOrg/neogit',
+    lazy = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
+
+      'nvim-telescope/telescope.nvim', -- optional
+    },
+    cmd = 'G',
+    keys = {
+      { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Show Neogit UI' },
     },
   },
 
