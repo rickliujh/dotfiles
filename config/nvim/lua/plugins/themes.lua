@@ -121,6 +121,61 @@ return {
 
       vim.cmd.colorscheme 'vague'
     end,
-    enabled = true,
+    enabled = false,
+  },
+
+  {
+    'mofiqul/vscode.nvim',
+    lazy = false,
+    config = function(_, opts)
+      -- vim.cmd.colorscheme 'vscode'
+    end,
+  },
+
+  {
+    'zenbones-theme/zenbones.nvim',
+    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    dependencies = 'rktjmp/lush.nvim',
+    lazy = false,
+    -- you can set set configuration options here
+    config = function()
+      vim.g.zenbones_darken_comments = 45
+      -- vim.cmd.colorscheme 'zenbones'
+    end,
+  },
+
+  {
+    'webhooked/kanso.nvim',
+    lazy = false,
+    config = function(_, opts)
+      -- vim.cmd.colorscheme 'kanso'
+    end,
+  },
+
+  {
+    'andreasvc/vim-256noir',
+    lazy = false,
+    config = function(_, opts)
+      -- vim.cmd.colorscheme '256noir'
+    end,
+  },
+
+  {
+    'p00f/alabaster.nvim',
+    lazy = false,
+    config = function(_, opts)
+      vim.g.alabaster_dim_comments = true
+      -- vim.cmd.colorscheme 'alabaster'
+    end,
+  },
+
+  {
+    'pgdouyon/vim-yin-yang',
+    lazy = false,
+    config = function(_, opts)
+      vim.cmd.colorscheme 'yin'
+    end,
   },
 }
