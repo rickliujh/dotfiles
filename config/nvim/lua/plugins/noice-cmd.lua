@@ -13,6 +13,7 @@ return {
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
+    enabled = true,
     opts = {
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -42,9 +43,11 @@ return {
           },
         },
       },
-      notify = {
-        enabled = false,
-        view = 'notify',
+      views = {
+        split = {
+          backend = 'split',
+          enter = true,
+        },
       },
     },
     dependencies = {
@@ -53,14 +56,49 @@ return {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      -- {
-      --   'rcarriga/nvim-notify',
-      --   opts = {
-      --     background_colour = '#000000',
-      --     render = 'wrapped-compact',
-      --     stages = 'static',
-      --   },
-      -- },
+      {
+        'rcarriga/nvim-notify',
+        config = function()
+          local stages_util = require 'notify.stages.util'
+          local direction = stages_util.DIRECTION.BOTTOM_UP
+          require('notify').setup {
+            fps = 1,
+            background_colour = '#000000',
+            render = 'minimal',
+            -- no_animation
+            -- https://github.com/rcarriga/nvim-notify/tree/master?tab=readme-ov-file#animation-style
+            -- https://github.com/rcarriga/nvim-notify/blob/master/lua/notify/stages/no_animation.lua
+            stages = {
+              function(state)
+                local next_height = state.message.height + 2
+                local next_row = stages_util.available_slot(state.open_windows, next_height, direction)
+                if not next_row then
+                  return nil
+                end
+                return {
+                  relative = 'editor',
+                  anchor = 'NE',
+                  width = state.message.width,
+                  height = state.message.height,
+                  col = vim.opt.columns:get(),
+                  row = next_row,
+                  border = 'none',
+                  style = 'minimal',
+                }
+              end,
+              function(state, win)
+                return {
+                  col = vim.opt.columns:get(),
+                  time = true,
+                  row = stages_util.slot_after_previous(win, state.open_windows, direction),
+                }
+              end,
+            },
+            timeout = 2800,
+            top_down = false,
+          }
+        end,
+      },
     },
     config = function(_, opts)
       local noice = require 'noice'
