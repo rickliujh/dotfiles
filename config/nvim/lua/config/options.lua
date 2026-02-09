@@ -77,3 +77,6 @@ vim.diagnostic.config {
   },
   jump = { float = true },
 }
+
+-- Set default file explorer to tree view
+vim.g.netrw_liststyle = 3
