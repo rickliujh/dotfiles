@@ -32,7 +32,7 @@
 	w = worktree
 	wa = worktree add
 	wl = worktree list
-	wd = worktree delete
+	wr = worktree remove
 	# List contributors with number of commits.
 	contributors = shortlog --summary --numbered
 	# Interactive rebase with the given number of latest commits.
