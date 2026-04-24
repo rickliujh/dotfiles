@@ -121,3 +121,7 @@ fi
 EOF
 }
 
+install_earlyoom() {
+    sudo pacman -S earlyoom
+    sudo systemctl enable --now earlyoom
+}

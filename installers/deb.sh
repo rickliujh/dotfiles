@@ -122,3 +122,6 @@ else
 fi' >> ~/.local.sh
 }
 
+install_earlyoom() {
+    sudo apt install earlyoom
+}

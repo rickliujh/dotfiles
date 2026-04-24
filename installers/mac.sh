@@ -101,3 +101,7 @@ fi
 EOF
 }
  
+install_earlyoom() {
+    # placeholder to implement the interface
+    # as macos didn't need custom oom-killer
+}

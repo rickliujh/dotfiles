@@ -49,6 +49,7 @@ install_without_languages() {
     install_prezto
     install_git_delta
     install_tmux_plugin
+    install_earlyoom
 }
 
 install_languages() {
