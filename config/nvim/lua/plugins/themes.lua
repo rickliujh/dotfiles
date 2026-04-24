@@ -128,7 +128,7 @@ return {
     'mofiqul/vscode.nvim',
     lazy = false,
     config = function(_, opts)
-      -- vim.cmd.colorscheme 'vscode'
+      vim.cmd.colorscheme 'vscode'
     end,
   },
 
@@ -175,7 +175,7 @@ return {
     'pgdouyon/vim-yin-yang',
     lazy = false,
     config = function(_, opts)
-      vim.cmd.colorscheme 'yin'
+      -- vim.cmd.colorscheme 'yin'
     end,
   },
 }
