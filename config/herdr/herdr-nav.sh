@@ -39,6 +39,12 @@ case "$dir" in
   *) echo "herdr-nav.sh: unknown direction: $dir" >&2; exit 2 ;;
 esac
 
+# --- TEMP DEBUG (remove after diagnosing) ---
+DBG="$HOME/herdr-nav-debug.log"
+dbg() { printf '%s dir=%s key=%s pane=%s | %s\n' "$(date +%H:%M:%S)" "$dir" "$key" "$pane" "$*" >>"$DBG"; }
+dbg "invoked (herdr=$herdr)"
+# --- END TEMP DEBUG ---
+
 # Foreground process names that mean "Vim is in control of this pane".
 # Same matcher vim-tmux-navigator uses: vi, vim, nvim, view, gvim, *diff, ...
 vim_re='^g?(view|l?n?vim?x?)(diff)?$'
@@ -81,7 +87,9 @@ EOF
 fi
 
 if [ "$forward" -eq 1 ]; then
+  dbg "FORWARD -> pane send-keys $pane $key ; info=$(printf '%s' "$info" | tr -d ' \t\n')"
   exec "$herdr" pane send-keys "$pane" "$key"
 else
+  dbg "FOCUS -> pane focus --direction $dir --pane $pane ; info=$(printf '%s' "$info" | tr -d ' \t\n')"
   exec "$herdr" pane focus --direction "$dir" --pane "$pane"
 fi

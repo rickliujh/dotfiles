@@ -17,6 +17,30 @@ return {
     -- off to the surrounding multiplexer — herdr when inside a herdr pane,
     -- tmux when inside tmux, plain wincmd otherwise. Chosen at runtime, so the
     -- same config works in both (tmux stays primary; herdr is opt-in via env).
+    -- herdr injects HERDR_PANE_ID into panes but NOT HERDR_BIN_PATH, so resolve
+    -- the binary via PATH (exepath) with a couple of common install fallbacks.
+    local function herdr_bin()
+      local b = vim.env.HERDR_BIN_PATH
+      if b and b ~= "" then
+        return b
+      end
+      local p = vim.fn.exepath("herdr")
+      if p ~= "" then
+        return p
+      end
+      for _, c in ipairs({
+        vim.fn.expand("~/.local/bin/herdr"),
+        "/opt/homebrew/bin/herdr", -- macOS Apple Silicon (brew)
+        "/usr/local/bin/herdr", -- macOS Intel (brew)
+        "/usr/bin/herdr", -- Linux (AUR/pkg)
+      }) do
+        if vim.fn.executable(c) == 1 then
+          return c
+        end
+      end
+      return "herdr"
+    end
+
     local function nav(wincmd, dir)
       local prev = vim.api.nvim_get_current_win()
       vim.cmd("wincmd " .. wincmd)
@@ -24,11 +48,12 @@ return {
         return -- moved within Neovim
       end
       if vim.env.HERDR_PANE_ID and vim.env.HERDR_PANE_ID ~= "" then
-        local herdr = vim.env.HERDR_BIN_PATH
-        if herdr == nil or herdr == "" then
-          herdr = "herdr"
+        -- Single-window nvim relies entirely on this handoff to cross into the
+        -- neighbouring herdr pane. Surface failures instead of dying silently.
+        local out = vim.fn.system({ herdr_bin(), "pane", "focus", "--direction", dir, "--current" })
+        if vim.v.shell_error ~= 0 then
+          vim.notify("herdr nav failed (" .. dir .. "): " .. out, vim.log.levels.WARN)
         end
-        vim.fn.system({ herdr, "pane", "focus", "--direction", dir, "--current" })
       elseif vim.env.TMUX and vim.env.TMUX ~= "" then
         local t = { left = "Left", down = "Down", up = "Up", right = "Right" }
         pcall(vim.cmd, "TmuxNavigate" .. t[dir])
