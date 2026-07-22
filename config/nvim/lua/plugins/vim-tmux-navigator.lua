@@ -41,30 +41,16 @@ return {
       return "herdr"
     end
 
-    -- TEMP DEBUG (remove after diagnosing): log each nav call to ~/herdr-nav-nvim.log
-    local function dbg(msg)
-      local f = io.open(vim.fn.expand("~/herdr-nav-nvim.log"), "a")
-      if f then
-        f:write(os.date("%H:%M:%S") .. " " .. msg .. "\n")
-        f:close()
-      end
-    end
-
     local function nav(wincmd, dir)
       local prev = vim.api.nvim_get_current_win()
       vim.cmd("wincmd " .. wincmd)
-      local moved = vim.api.nvim_get_current_win() ~= prev
-      dbg(string.format("nav dir=%s wincmd=%s moved_in_nvim=%s HERDR_PANE_ID=%s",
-        dir, wincmd, tostring(moved), tostring(vim.env.HERDR_PANE_ID)))
-      if moved then
+      if vim.api.nvim_get_current_win() ~= prev then
         return -- moved within Neovim
       end
       if vim.env.HERDR_PANE_ID and vim.env.HERDR_PANE_ID ~= "" then
         -- Single-window nvim relies entirely on this handoff to cross into the
         -- neighbouring herdr pane. Surface failures instead of dying silently.
         local out = vim.fn.system({ herdr_bin(), "pane", "focus", "--direction", dir, "--current" })
-        dbg(string.format("  handoff bin=%s dir=%s exit=%s out=%s",
-          herdr_bin(), dir, tostring(vim.v.shell_error), (out or ""):gsub("%s+", " ")))
         if vim.v.shell_error ~= 0 then
           vim.notify("herdr nav failed (" .. dir .. "): " .. out, vim.log.levels.WARN)
         end
