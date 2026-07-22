@@ -86,5 +86,20 @@ return {
     map("<C-l>", "l", "right")
     -- tmux-only "last pane" toggle, unchanged from your setup
     vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { silent = true, desc = "Navigate previous (tmux)" })
+
+    -- netrw buffer-locally maps <C-l> (refresh) and <C-h> (edit hiding list),
+    -- which shadow our global nav maps and break left/right pane navigation from
+    -- `nvim .`. Re-assert our nav maps buffer-locally in netrw. (<C-j>/<C-k> are
+    -- unaffected because netrw doesn't map them.)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "netrw",
+      callback = function(ev)
+        local o = { buffer = ev.buf, silent = true, noremap = true }
+        vim.keymap.set("n", "<C-h>", function() nav("h", "left") end, o)
+        vim.keymap.set("n", "<C-j>", function() nav("j", "down") end, o)
+        vim.keymap.set("n", "<C-k>", function() nav("k", "up") end, o)
+        vim.keymap.set("n", "<C-l>", function() nav("l", "right") end, o)
+      end,
+    })
   end,
 }
