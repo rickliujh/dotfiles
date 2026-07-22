@@ -105,3 +105,8 @@ install_earlyoom() {
     # placeholder to implement the interface
     # as macos didn't need custom oom-killer
 }
+
+install_herdr() {
+    log_blue "Installing herdr..."
+    brew install herdr
+}

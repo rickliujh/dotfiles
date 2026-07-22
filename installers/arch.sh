@@ -125,3 +125,8 @@ install_earlyoom() {
     sudo pacman -S earlyoom
     sudo systemctl enable --now earlyoom
 }
+
+install_herdr() {
+    log_blue "Installing herdr from AUR..."
+    yes | yay -S --answerclean All --answerdiff All --answeredit All --answerupgrade Repo herdr-bin
+}

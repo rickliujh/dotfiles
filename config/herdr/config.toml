@@ -1,0 +1,70 @@
+# Herdr config — mirrors ~/.config/tmux/tmux.conf hotkeys.
+# Docs: https://herdr.dev/docs/keyboard/ and /docs/configuration/#keybindings
+# Note the tmux<->herdr naming: tmux `split-window -v` (stacked) == herdr
+# `split_horizontal`; tmux `-h` (side-by-side) == herdr `split_vertical`.
+# tmux "windows" == herdr "tabs".
+
+[keys]
+# tmux: `set -g prefix C-Space`
+prefix = "ctrl+space"
+
+# Splits open in the current pane's directory automatically in herdr.
+# tmux: `bind v split-window -h` (side by side)  -> herdr default already prefix+v
+split_vertical = "prefix+v"
+# tmux: `bind s split-window -v` (stacked)        -> herdr default is prefix+minus
+split_horizontal = "prefix+s"
+
+# tmux windows == herdr tabs.
+# tmux: `bind j previous-window`
+previous_tab = "prefix+j"
+# tmux: `bind k next-window`
+next_tab = "prefix+k"
+
+# Copy mode with vi motions. herdr's copy mode already uses vi keys:
+# v / Space start selection, y / Enter copy, q / Esc leave — matching your
+# `mode-keys vi` + v/y bindings and tmux-yank behavior.
+copy_mode = "prefix+["
+
+# Pane navigation. Prefix bindings kept as the always-safe fallback.
+focus_pane_left  = "prefix+h"
+focus_pane_down  = "prefix+j"
+focus_pane_up    = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# vim-tmux-navigator replacement: plain Ctrl+h/j/k/l. herdr-nav.sh forwards the
+# key into (n)vim when it's the focused pane's foreground process, otherwise
+# moves between herdr panes. Trade-off: while these are bound, Ctrl+h/j/k/l no
+# longer reach a plain shell as backspace/newline/kill-line/clear.
+[[keys.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/.config/herdr/herdr-nav.sh left"
+description = "vim-aware focus/pane left"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/.config/herdr/herdr-nav.sh down"
+description = "vim-aware focus/pane down"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/.config/herdr/herdr-nav.sh up"
+description = "vim-aware focus/pane up"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/.config/herdr/herdr-nav.sh right"
+description = "vim-aware focus/pane right"
+
+# tmux: popup toggle on `M-p` (display-popup scratch session).
+# herdr popups run a command; exit the shell to close it.
+[[keys.command]]
+key = "alt+p"
+type = "popup"
+command = "exec \"${SHELL:-sh}\""
+description = "scratch popup terminal"
+width = "80%"
+height = "80%"
