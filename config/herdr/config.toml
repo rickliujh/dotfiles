@@ -11,32 +11,44 @@ prefix = "ctrl+space"
 # Splits open in the current pane's directory automatically in herdr.
 # tmux: `bind v split-window -h` (side by side)  -> herdr default already prefix+v
 split_vertical = "prefix+v"
-# tmux: `bind s split-window -v` (stacked)        -> herdr default is prefix+minus
-split_horizontal = "prefix+s"
+# tmux: `bind s split-window -v` (stacked). Keep herdr default prefix+minus too.
+split_horizontal = ["prefix+minus", "prefix+s"]
 
-# tmux windows == herdr tabs.
-# tmux: `bind j previous-window`
-previous_tab = "prefix+j"
-# tmux: `bind k next-window`
-next_tab = "prefix+k"
+# tmux windows == herdr tabs. herdr defaults kept + tmux keys added.
+new_tab      = "prefix+c"                             # tmux: new-window (== herdr default)
+rename_tab   = ["prefix+shift+t", "prefix+comma"]     # herdr default + tmux prefix+, rename-window
+close_tab    = ["prefix+shift+x", "prefix+ampersand"] # herdr default + tmux prefix+& kill-window
+previous_tab = ["prefix+p", "prefix+j"]               # tmux prefix+p previous-window (+ your `bind j`)
+next_tab     = ["prefix+n", "prefix+k"]               # tmux prefix+n next-window (+ your `bind k`)
 
 # Copy mode with vi motions. herdr's copy mode already uses vi keys:
 # v / Space start selection, y / Enter copy, q / Esc leave — matching your
 # `mode-keys vi` + v/y bindings and tmux-yank behavior.
 copy_mode = "prefix+["
 
-# Pane navigation prefix fallback on arrows (primary nav is ctrl+h/j/k/l).
-# Arrows keep prefix+h/j/k/l free: prefix+j/k are tab nav, prefix+l is last_pane.
+# Pane navigation on arrows (tmux prefix+arrows); primary nav is ctrl+h/j/k/l.
+# herdr's default prefix+h/j/k/l are all dropped: j/k/l are tab nav / last_pane,
+# and prefix+h is dropped too for a consistent arrows-only set.
 focus_pane_left  = "prefix+left"
 focus_pane_down  = "prefix+down"
 focus_pane_up    = "prefix+up"
 focus_pane_right = "prefix+right"
 
-# Jump back to the previously focused pane. ctrl+\ / ctrl+backspace mirror
-# vim-tmux-navigator's <C-\>; prefix+l mirrors tmux's `last-window` (herdr has no
-# last-active-tab action, so this is pane-level but crosses tabs). herdr grabs
-# these directly — no nvim handoff needed.
-last_pane = ["ctrl+backslash", "ctrl+backspace", "prefix+l"]
+# Jump back to the previously focused pane. prefix+; is tmux's last-pane; prefix+l
+# approximates tmux's last-window (herdr has no last-active-tab, so it's pane-level
+# but crosses tabs); ctrl+\ / ctrl+backspace mirror vim-tmux-navigator's <C-\>.
+last_pane = ["prefix+semicolon", "prefix+l", "ctrl+backslash", "ctrl+backspace"]
+# Note: tmux's prefix+o (next pane) is NOT added — herdr keeps prefix+o for
+# open_notification_target. cycle_pane_next stays on herdr's default prefix+tab.
+
+# Swap the focused pane with a neighbour. herdr default prefix+shift+h/l kept +
+# tmux prefix+{/} (left/right; herdr has only directional swaps, no order rotate).
+swap_pane_left  = ["prefix+shift+h", "prefix+{"]
+swap_pane_right = ["prefix+shift+l", "prefix+}"]
+
+# tmux sessions == herdr workspaces. herdr defaults kept + tmux keys added.
+detach           = ["prefix+q", "prefix+d"]        # herdr default + tmux prefix+d detach-client
+rename_workspace = ["prefix+shift+w", "prefix+$"]  # herdr default + tmux prefix+$ rename-session
 
 # Navigate mode (the workspace picker opened with prefix+w): switch workspaces
 # with ctrl+j/k (arrows still work too). Plain h/j/k/l stay as pane selection,
