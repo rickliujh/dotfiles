@@ -31,6 +31,12 @@ focus_pane_down  = "prefix+j"
 focus_pane_up    = "prefix+k"
 focus_pane_right = "prefix+l"
 
+# Navigate mode (the workspace picker opened with prefix+w): switch workspaces
+# with ctrl+j/k (arrows still work too). Plain h/j/k/l stay as pane selection,
+# so no collision — ctrl+j/k are free in navigate mode.
+navigate_workspace_up   = ["ctrl+k", "up"]
+navigate_workspace_down = ["ctrl+j", "down"]
+
 # vim-tmux-navigator replacement: plain Ctrl+h/j/k/l. herdr-nav.sh forwards the
 # key into (n)vim when it's the focused pane's foreground process, otherwise
 # moves between herdr panes. Trade-off: while these are bound, Ctrl+h/j/k/l no
