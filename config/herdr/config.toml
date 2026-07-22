@@ -31,6 +31,10 @@ focus_pane_down  = "prefix+j"
 focus_pane_up    = "prefix+k"
 focus_pane_right = "prefix+l"
 
+# Jump back to the previously focused pane, like vim-tmux-navigator's <C-\>.
+# herdr grabs these directly (no nvim handoff needed — it's a pane-level jump).
+last_pane = ["ctrl+backslash", "ctrl+backspace"]
+
 # Navigate mode (the workspace picker opened with prefix+w): switch workspaces
 # with ctrl+j/k (arrows still work too). Plain h/j/k/l stay as pane selection,
 # so no collision — ctrl+j/k are free in navigate mode.
