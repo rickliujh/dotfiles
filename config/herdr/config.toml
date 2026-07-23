@@ -49,6 +49,13 @@ swap_pane_right = ["prefix+shift+l", "prefix+}"]
 # tmux sessions == herdr workspaces. herdr defaults kept + tmux keys added.
 detach           = ["prefix+q", "prefix+d"]        # herdr default + tmux prefix+d detach-client
 rename_workspace = ["prefix+shift+w", "prefix+$"]  # herdr default + tmux prefix+$ rename-session
+# Open the workspace switcher. herdr default prefix+w + your prefix+ctrl+w.
+workspace_picker = ["prefix+w", "prefix+ctrl+w"]
+
+# Agent panel navigation (unset by default in herdr). j = next, k = previous.
+focus_agent    = "prefix+alt+1..9"  # jump to agent 1-9
+next_agent     = "prefix+alt+j"
+previous_agent = "prefix+alt+k"
 
 # Navigate mode (the workspace picker opened with prefix+w): switch workspaces
 # with ctrl+j/k (arrows still work too). Plain h/j/k/l stay as pane selection,
@@ -102,3 +109,15 @@ command = "exec \"${SHELL:-sh}\""
 description = "scratch popup terminal"
 width = "80%"
 height = "80%"
+
+#=====================#
+#    NOTIFICATIONS    #
+#=====================#
+# Notify via the terminal (OSC 9/99) instead of a sound. Ghostty supports it,
+# needs no OS permissions, and works over SSH. (delivery: off | herdr | terminal
+# | system — use "system" for OS Notification Center instead.)
+[ui.toast]
+delivery = "terminal"
+
+[ui.sound]
+enabled = false
