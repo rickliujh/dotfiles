@@ -52,6 +52,12 @@ rename_workspace = ["prefix+shift+w", "prefix+$"]  # herdr default + tmux prefix
 # Open the workspace switcher. herdr default prefix+w + your prefix+ctrl+w.
 workspace_picker = ["prefix+w", "prefix+ctrl+w"]
 
+# Quick workspace switch: cycle with prefix+ctrl+j/k (j=next, k=prev), jump by
+# index with prefix+shift+1..9 (tabs are prefix+1..9, workspaces prefix+shift).
+next_workspace     = "prefix+ctrl+j"
+previous_workspace = "prefix+ctrl+k"
+switch_workspace   = "prefix+shift+1..9"
+
 # Agent panel navigation (unset by default in herdr). j = next, k = previous.
 focus_agent    = "prefix+alt+1..9"  # jump to agent 1-9
 next_agent     = "prefix+alt+j"
