@@ -1,2 +1,9 @@
 config/nvim/lazy-lock.json
 dockerfiles/Vars.mk
+
+# herdr runtime cfgs
+config/herdr/.plugins.lock
+config/herdr/herdr-client.log
+config/herdr/herdr-server.log
+config/herdr/plugins.json
+config/herdr/session.json
