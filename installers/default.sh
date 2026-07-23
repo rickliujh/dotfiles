@@ -119,6 +119,27 @@ install_go() {
     go version
 }
 
+# Register vendored herdr plugins (currently: last-tab, for tmux-style prefix+l).
+# herdr plugins are imperative (no config-declared plugins), so link them here.
+# Idempotent; safe to run whether or not the config symlink exists yet.
+link_herdr_plugins() {
+    herdr_bin="$(command -v herdr 2>/dev/null || echo "$HOME/.local/bin/herdr")"
+    [ -x "$herdr_bin" ] || { log_red "herdr not found on PATH; skip plugin link"; return 0; }
+
+    plugin_dir=""
+    for d in "$HOME/.config/herdr/last-tab-plugin" "${CURR_DIR:-}/../config/herdr/last-tab-plugin"; do
+        [ -d "$d" ] && { plugin_dir="$(cd "$d" && pwd)"; break; }
+    done
+    [ -n "$plugin_dir" ] || { log_red "last-tab-plugin dir not found; skip"; return 0; }
+
+    if "$herdr_bin" plugin list 2>/dev/null | grep -q 'last-tab'; then
+        log_blue "herdr last-tab plugin already linked"
+        return 0
+    fi
+    log_blue "Linking herdr last-tab plugin..."
+    "$herdr_bin" plugin link "$plugin_dir"
+}
+
 install_herdr() {
     # Fallback for platforms with no native package (e.g. Debian/Ubuntu apt).
     # Upstream installer -> ~/.local/bin. arch.sh (AUR) and mac.sh (brew) override.
@@ -126,6 +147,7 @@ install_herdr() {
     # config/herdr/herdr-nav.sh (the script falls back to grep without jq).
     log_blue "Installing herdr..."
     curl -fsSL https://herdr.dev/install.sh | sh
+    link_herdr_plugins
 }
 
 install_rust() {

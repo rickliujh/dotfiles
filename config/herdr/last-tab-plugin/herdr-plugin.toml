@@ -1,0 +1,19 @@
+id = "last-tab"
+name = "Last Tab"
+version = "0.1.0"
+min_herdr_version = "0.7.0"
+description = "tmux-style last-window: jump to the most-recently-used tab"
+platforms = ["linux", "macos"]
+
+# Record the most-recently-used tab on every focus change (keyboard AND mouse).
+# tab.focused fires for all switches, so the MRU history stays accurate.
+[[events]]
+on = "tab.focused"
+command = ["bash", "record.sh"]
+
+# Jump to the previously-used tab in the current workspace (bind to prefix+l).
+[[actions]]
+id = "jump"
+title = "Jump to last-used tab"
+contexts = ["global"]
+command = ["bash", "jump.sh"]

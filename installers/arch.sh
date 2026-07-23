@@ -129,4 +129,5 @@ install_earlyoom() {
 install_herdr() {
     log_blue "Installing herdr from AUR..."
     yes | yay -S --answerclean All --answerdiff All --answeredit All --answerupgrade Repo herdr-bin
+    link_herdr_plugins   # defined in default.sh
 }

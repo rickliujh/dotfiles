@@ -110,4 +110,5 @@ install_earlyoom() {
 install_herdr() {
     log_blue "Installing herdr..."
     brew install herdr
+    link_herdr_plugins   # defined in default.sh
 }

@@ -34,10 +34,10 @@ focus_pane_down  = "prefix+down"
 focus_pane_up    = "prefix+up"
 focus_pane_right = "prefix+right"
 
-# Jump back to the previously focused pane. prefix+; is tmux's last-pane; prefix+l
-# approximates tmux's last-window (herdr has no last-active-tab, so it's pane-level
-# but crosses tabs); ctrl+\ / ctrl+backspace mirror vim-tmux-navigator's <C-\>.
-last_pane = ["prefix+semicolon", "prefix+l", "ctrl+backslash", "ctrl+backspace"]
+# Jump back to the previously focused pane (tmux last-pane = prefix+;). ctrl+\ /
+# ctrl+backspace mirror vim-tmux-navigator's <C-\>. NOTE: prefix+l is intentionally
+# NOT here — that's tmux last-window (tab-level), which herdr can't do natively.
+last_pane = ["prefix+semicolon", "ctrl+backslash", "ctrl+backspace"]
 # Note: tmux's prefix+o (next pane) is NOT added — herdr keeps prefix+o for
 # open_notification_target. cycle_pane_next stays on herdr's default prefix+tab.
 
@@ -83,6 +83,15 @@ key = "ctrl+l"
 type = "shell"
 command = "~/.config/herdr/herdr-nav.sh right"
 description = "vim-aware focus/pane right"
+
+# tmux last-window: jump to the most-recently-used tab (true MRU, not order).
+# Provided by the vendored `last-tab` plugin (config/herdr/last-tab-plugin) via
+# the tab.focused event. Requires a one-time: herdr plugin link <that dir>.
+[[keys.command]]
+key = "prefix+l"
+type = "plugin_action"
+command = "last-tab.jump"
+description = "jump to last-used tab (tmux last-window)"
 
 # tmux: popup toggle on `M-p` (display-popup scratch session).
 # herdr popups run a command; exit the shell to close it.
