@@ -807,7 +807,7 @@
                         ]
                     },
                     {
-                        "description": "Ctrl+F => Cmd+F (Find)",
+                        "description": "Ctrl+F => Cmd+F (Find) & Ctrl+G => Cmd+G (Find Next)",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -898,9 +898,10 @@
                                             "^com\\.googlecode\\.iterm2$",
                                             "^co\\.zeit\\.hyperterm$",
                                             "^co\\.zeit\\.hyper$",
+                                            "^io\\.alacritty$",
                                             "^org\\.alacritty$",
                                             "^net\\.kovidgoyal\\.kitty$",
-                                            "^com\\.github\\.wez\\.wezterm$"
+                                            "^com\\.mitchellh\\.ghostty$"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -1964,8 +1965,8 @@
                         "vendor_id": 9390
                     },
                     "ignore": false,
-                    "mouse_flip_horizontal_wheel": true,
-                    "mouse_flip_vertical_wheel": true
+                    "mouse_flip_vertical_wheel": true,
+                    "pointing_motion_wheels_multiplier": 2.0
                 }
             ],
             "fn_function_keys": [
