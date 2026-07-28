@@ -52,10 +52,13 @@ rename_workspace = ["prefix+shift+w"]  # herdr default; no prefix+$ — collides
 # Open the workspace switcher. herdr default prefix+w + your prefix+ctrl+w.
 workspace_picker = ["prefix+w", "prefix+ctrl+w"]
 
-# Quick workspace switch: cycle with prefix+ctrl+j/k (j=next, k=prev), jump by
-# index with prefix+shift+1..9 (tabs are prefix+1..9, workspaces prefix+shift).
-next_workspace     = "prefix+ctrl+j"
-previous_workspace = "prefix+ctrl+k"
+# Quick workspace switch: cycle with prefix+shift+j/k (j=prev, k=next — same
+# direction as the tab keys prefix+j/k), jump by index with prefix+shift+1..9
+# (tabs are prefix+1..9, workspaces prefix+shift). If herdr binds prefix+shift+j
+# /k by default (e.g. a vertical swap_pane), these override it — pane swaps stay
+# on prefix+shift+h/l.
+next_workspace     = "prefix+shift+k"
+previous_workspace = "prefix+shift+j"
 switch_workspace   = "prefix+shift+1..9"
 
 # Agent panel navigation (unset by default in herdr). j = next, k = previous.
