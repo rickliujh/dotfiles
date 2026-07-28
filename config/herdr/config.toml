@@ -41,10 +41,12 @@ last_pane = ["prefix+semicolon", "ctrl+backslash", "ctrl+backspace"]
 # Note: tmux's prefix+o (next pane) is NOT added — herdr keeps prefix+o for
 # open_notification_target. cycle_pane_next stays on herdr's default prefix+tab.
 
-# Swap the focused pane with a neighbour. herdr default prefix+shift+h/l kept +
+# Swap the focused pane with a neighbour. herdr default prefix+shift+h kept +
 # tmux prefix+{/} (left/right; herdr has only directional swaps, no order rotate).
+# prefix+shift+l is NOT here — it's last-workspace below; swap right lives on
+# prefix+} only.
 swap_pane_left  = ["prefix+shift+h", "prefix+{"]
-swap_pane_right = ["prefix+shift+l", "prefix+}"]
+swap_pane_right = ["prefix+}"]
 
 # tmux sessions == herdr workspaces. herdr defaults kept + tmux keys added.
 detach           = ["prefix+q", "prefix+d"]        # herdr default + tmux prefix+d detach-client
@@ -108,6 +110,26 @@ key = "prefix+l"
 type = "plugin_action"
 command = "last-tab.jump"
 description = "jump to last-used tab (tmux last-window)"
+
+# Same toggle one level up: back and forth between the two most-recently-used
+# workspaces (tmux last-session). Same plugin, workspace.focused event.
+[[keys.command]]
+key = "prefix+shift+l"
+type = "plugin_action"
+command = "last-tab.jump-workspace"
+description = "jump to last-used workspace"
+
+# ...and the same jump under the prefix+alt agent keys. An agent lives in a pane
+# of a workspace, and herdr restores that workspace's focused pane, so bouncing
+# to the last workspace lands back on the agent you came from — no agent-level
+# MRU needed (herdr has no agent.focused event to build one from anyway).
+# Caveat: it's a no-op when the previous agent is another pane of the *current*
+# workspace; use the agent panel keys (prefix+alt+j/k, prefix+alt+1..9) there.
+[[keys.command]]
+key = "prefix+alt+l"
+type = "plugin_action"
+command = "last-tab.jump-workspace"
+description = "jump to last-used workspace (agent-side alias)"
 
 # tmux: popup toggle on `M-p` (display-popup scratch session).
 # herdr popups run a command; exit the shell to close it.

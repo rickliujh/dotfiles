@@ -119,7 +119,8 @@ install_go() {
     go version
 }
 
-# Register vendored herdr plugins (currently: last-tab, for tmux-style prefix+l).
+# Register vendored herdr plugins (currently: last-tab, the MRU tab jump on
+# prefix+l and the MRU workspace jump on prefix+shift+l / prefix+alt+l).
 # herdr plugins are imperative (no config-declared plugins), so link them here.
 # Idempotent; safe to run whether or not the config symlink exists yet.
 link_herdr_plugins() {

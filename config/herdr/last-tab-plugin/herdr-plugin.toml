@@ -1,19 +1,39 @@
+# NOTE: `id` stays "last-tab" on purpose — it is what `herdr plugin link`
+# registered and what config.toml's plugin_action keys resolve against.
 id = "last-tab"
-name = "Last Tab"
-version = "0.1.0"
+name = "Last MRU"
+version = "0.2.0"
 min_herdr_version = "0.7.0"
-description = "tmux-style last-window: jump to the most-recently-used tab"
+description = "tmux-style last-window: jump back to the previous tab or workspace"
 platforms = ["linux", "macos"]
 
 # Record the most-recently-used tab on every focus change (keyboard AND mouse).
 # tab.focused fires for all switches, so the MRU history stays accurate.
 [[events]]
 on = "tab.focused"
-command = ["bash", "record.sh"]
+command = ["bash", "record.sh", "tab"]
 
-# Jump to the previously-used tab in the current workspace (bind to prefix+l).
+# Same for workspaces (tmux sessions). workspace.focused covers the picker,
+# prefix+shift+j/k cycling and prefix+shift+1..9 index jumps alike.
+[[events]]
+on = "workspace.focused"
+command = ["bash", "record.sh", "workspace"]
+
+# No agent-level MRU here: agents live in workspace panes, so prefix+alt+l just
+# reuses jump-workspace. (herdr has no agent.focused event either — the socket
+# API only offers pane.focused / pane.agent_detected / pane.agent_status_changed.)
+
+# Jump to the previously-used tab in the current workspace (bound to prefix+l).
 [[actions]]
 id = "jump"
 title = "Jump to last-used tab"
 contexts = ["global"]
-command = ["bash", "jump.sh"]
+command = ["bash", "jump.sh", "tab"]
+
+# Jump to the previously-used workspace (bound to prefix+shift+l, and to
+# prefix+alt+l to get back to the agent you came from).
+[[actions]]
+id = "jump-workspace"
+title = "Jump to last-used workspace"
+contexts = ["global"]
+command = ["bash", "jump.sh", "workspace"]
