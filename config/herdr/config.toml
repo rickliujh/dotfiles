@@ -48,7 +48,7 @@ swap_pane_right = ["prefix+shift+l", "prefix+}"]
 
 # tmux sessions == herdr workspaces. herdr defaults kept + tmux keys added.
 detach           = ["prefix+q", "prefix+d"]        # herdr default + tmux prefix+d detach-client
-rename_workspace = ["prefix+shift+w", "prefix+$"]  # herdr default + tmux prefix+$ rename-session
+rename_workspace = ["prefix+shift+w"]  # herdr default; no prefix+$ — collides with switch_workspace (shift+4)
 # Open the workspace switcher. herdr default prefix+w + your prefix+ctrl+w.
 workspace_picker = ["prefix+w", "prefix+ctrl+w"]
 
