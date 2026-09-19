@@ -24,5 +24,11 @@ setup_symlinks() {
         ln -sfnv "$PWD/scripts/$script" "$HOME/.local/bin"
         chmod +x "$PWD/scripts/$script"
     done
+
+    mkdir -p "$HOME/.claude"
+    items=($(claude_items))
+    for item in "${items[@]}"; do
+        ln -sfnv "$PWD/claude/$item" "$HOME/.claude/"
+    done
 }
 

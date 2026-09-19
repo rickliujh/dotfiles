@@ -84,6 +84,17 @@ config_scripts() {
     echo ${scripts[@]}
  }
 
+# Claude Code keeps its state in ~/.claude too, so only these entries are
+# linked into it rather than the whole directory.
+claude_items() {
+    declare -a claude_items
+    for item in "$PWD"/claude/*; do
+            claude_item=$(basename "$item")
+	    claude_items+=($claude_item)
+    done
+    echo ${claude_items[@]}
+ }
+
 check_lang_installed() {
     go version && rustc --version || error "Install essential languages first"
 }

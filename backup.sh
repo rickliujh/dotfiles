@@ -28,6 +28,14 @@ backup_configs() {
         fi
     done
 
+    items=($(claude_items))
+    for item in "${items[@]}"; do
+        if [ -e "$HOME/.claude/$item" ]; then
+            mkdir -p "$NEW_BACKUP_DIR/.claude"
+            mv -v "$HOME/.claude/$item" "$NEW_BACKUP_DIR/.claude/$item"
+        fi
+    done
+
     log_manual_action "You can remove backups in $NEW_BACKUP_DIR"
 }
 

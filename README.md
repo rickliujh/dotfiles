@@ -34,8 +34,8 @@ Linux and desktop configuration and setup scripts.
 1. `bash setup.sh -m` show menu.
 2. `bash setup.sh -a` setup all things.
 3. `bash setup.sh -i` install all packages and languages.
-4. `bash setup.sh -l` setup symlinks only.
-5. `bash setup.sh -b` backup current dotfiles (only those files that has same name in config dir in this repo).
+4. `bash setup.sh -l` setup symlinks only (`config/` into `~` and `~/.config`, `scripts/` into `~/.local/bin`, `claude/` into `~/.claude`).
+5. `bash setup.sh -b` backup current dotfiles (only those files that has same name in config or claude dir in this repo).
 6. `bash setup.sh {{func_name}}` you can actually call any function that declared in shell file in root folder by putting its name after setup.sh separated by space as long as you know what you're doing.
 
 ## Next...
