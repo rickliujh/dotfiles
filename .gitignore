@@ -7,3 +7,5 @@ config/herdr/herdr-client.log
 config/herdr/herdr-server.log
 config/herdr/plugins.json
 config/herdr/session.json
+config/herdr/release-notes.json
+
