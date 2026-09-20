@@ -43,6 +43,21 @@ Linux and desktop configuration and setup scripts.
 
 The only exception is directories shared with other programs (`~/.config`, `~/.local/bin`, `~/.claude`), which stay real directories with their entries linked one by one. They are listed in `SHARED` in `symlink.sh`; a new one is one word there.
 
+### How to extend
+Strip the `home/` prefix and you have the destination. After any of the below, run `bash setup.sh -l`.
+
+| To add | Do this | Link created |
+|---|---|---|
+| a dotfile | put it in `home/` | `~/.foorc` (the file) |
+| a tool's config directory | put it in `home/.config/` | `~/.config/foo` (the whole directory) |
+| a script | put it in `home/.local/bin/` and `chmod +x` it before committing | `~/.local/bin/foo.sh` (the file) |
+| a file for an already shared directory | put it in e.g. `home/.claude/` | `~/.claude/foo.md` (the file) |
+| a new shared directory, e.g. `~/.foo` | create `home/.foo/` and add `.foo` to `SHARED` in `symlink.sh` | each entry of `home/.foo/`, one by one |
+
+A directory is *shared* when other programs also write into it (state, caches, credentials), so it must stay a real directory. When in doubt, add it to `SHARED`: linking such a directory as a whole would make those programs write into this repo. For a nested one, list every level (`.local` and `.local/bin`).
+
+Files a program generates inside a whole-linked directory (`lazy-lock.json`, logs, sockets) land in the repo too; add them to `.gitignore`.
+
 ## Next...
 1. ~~understanding fzf and its config~~
 2. ~~understanding bashrc~~
