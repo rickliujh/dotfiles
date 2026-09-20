@@ -1,8 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 # -e: exit on error
 # -u: exit on unset variables
 set -eu
+
+# Repo root, so the scripts work from any directory.
+DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 log_color() {
     color_code="$1"
@@ -52,48 +55,6 @@ sudo() {
         command sudo "$@"
     fi
 }
-
-config_dirs() {
-    declare -a config_dirs
-    for item in "$PWD"/config/*; do
-        if [ -d "$item" ]; then
-            dir=$(basename "$item")
-	    config_dirs+=($dir)
-	fi 
-    done    
-    echo ${config_dirs[@]}
- }
-
-config_files() {
-    declare -a config_files
-    for item in "$PWD"/config/.*; do
-        if [ -f "$item" ]; then
-            file=$(basename "$item")
-	    config_files+=($file)
-       	fi 
-    done    
-    echo ${config_files[@]}
- }
-
-config_scripts() {
-    declare -a scripts
-    for item in "$PWD"/scripts/*; do
-            script=$(basename "$item")
-	    scripts+=($script)
-    done    
-    echo ${scripts[@]}
- }
-
-# Claude Code keeps its state in ~/.claude too, so only these entries are
-# linked into it rather than the whole directory.
-claude_items() {
-    declare -a claude_items
-    for item in "$PWD"/claude/*; do
-            claude_item=$(basename "$item")
-	    claude_items+=($claude_item)
-    done
-    echo ${claude_items[@]}
- }
 
 check_lang_installed() {
     go version && rustc --version || error "Install essential languages first"

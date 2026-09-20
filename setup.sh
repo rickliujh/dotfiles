@@ -1,13 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 # -e: exit on error
 # -u: exit on unset variables
 set -eu
 
-source ./helper.sh
-source ./installers/dispatcher.sh
-source ./backup.sh
-source ./symlink.sh
+source "$(dirname "${BASH_SOURCE[0]}")/helper.sh"
+source "$DOTFILES_DIR/installers/dispatcher.sh"
+source "$DOTFILES_DIR/symlink.sh"
 
 setup_ssh() {
     log_task "Setting up SSH key for you..."

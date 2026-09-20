@@ -145,7 +145,7 @@ install_herdr() {
     # Fallback for platforms with no native package (e.g. Debian/Ubuntu apt).
     # Upstream installer -> ~/.local/bin. arch.sh (AUR) and mac.sh (brew) override.
     # Optional: install `jq` for the richer Vim detection in
-    # config/herdr/herdr-nav.sh (the script falls back to grep without jq).
+    # home/.config/herdr/herdr-nav.sh (the script falls back to grep without jq).
     log_blue "Installing herdr..."
     curl -fsSL https://herdr.dev/install.sh | sh
     link_herdr_plugins

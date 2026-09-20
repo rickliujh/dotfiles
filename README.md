@@ -34,9 +34,14 @@ Linux and desktop configuration and setup scripts.
 1. `bash setup.sh -m` show menu.
 2. `bash setup.sh -a` setup all things.
 3. `bash setup.sh -i` install all packages and languages.
-4. `bash setup.sh -l` setup symlinks only (`config/` into `~` and `~/.config`, `scripts/` into `~/.local/bin`, `claude/` into `~/.claude`).
-5. `bash setup.sh -b` backup current dotfiles (only those files that has same name in config or claude dir in this repo).
+4. `bash setup.sh -l` setup symlinks only. Anything already in the way is moved to `~/.local/state/dotfiles/backups` first.
+5. `bash setup.sh -b` backup current dotfiles (only those that also exist in `home/` in this repo).
 6. `bash setup.sh {{func_name}}` you can actually call any function that declared in shell file in root folder by putting its name after setup.sh separated by space as long as you know what you're doing.
+
+### Layout
+`home/` mirrors `$HOME`: whatever is put in it gets symlinked to the same path under `~`, files and whole directories alike (`home/.config/nvim` -> `~/.config/nvim`), with no script change needed.
+
+The only exception is directories shared with other programs (`~/.config`, `~/.local/bin`, `~/.claude`), which stay real directories with their entries linked one by one. They are listed in `SHARED` in `symlink.sh`; a new one is one word there.
 
 ## Next...
 1. ~~understanding fzf and its config~~
